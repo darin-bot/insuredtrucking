@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 export default function Header() {
@@ -11,8 +12,16 @@ export default function Header() {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="container-custom px-4 md:px-6">
           <div className="flex justify-between items-center h-16 md:h-20">
-            <Link href="/" className="font-bold text-lg md:text-xl text-navy">
-              Affordable Truck Insurance Inc
+            <Link href="/" className="flex items-center gap-2 font-bold text-lg md:text-xl text-navy">
+              <Image 
+                src="/mascot-horse-icon.png" 
+                alt="Affordable Truck Insurance mascot" 
+                width={40} 
+                height={40}
+                className="rounded-full"
+              />
+              <span className="hidden sm:inline">Affordable Truck Insurance Inc</span>
+              <span className="sm:hidden">Affordable Truck Insurance</span>
             </Link>
             
             <button

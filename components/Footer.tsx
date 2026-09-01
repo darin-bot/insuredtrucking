@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,11 +13,20 @@ export default function Footer() {
             <p className="text-steel-light mb-4">
               Independent insurance agency specializing in commercial trucking coverage for owner-operators and for-hire trucking companies.
             </p>
-            <p className="text-steel-light">
+            <p className="text-steel-light mb-4">
               <a href="mailto:darin@insuredtrucking.com" className="hover:text-white transition-colors">
                 darin@insuredtrucking.com
               </a>
             </p>
+            <div className="mt-6">
+              <Image 
+                src="/mascot-horse.png" 
+                alt="Mascot of Affordable Truck Insurance Inc." 
+                width={120} 
+                height={120}
+                className="opacity-90"
+              />
+            </div>
           </div>
 
           <div>

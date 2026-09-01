@@ -1,15 +1,26 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
     <>
-      <section className="bg-gradient-to-br from-navy to-navy-dark text-white section-padding">
-        <div className="container-custom">
+      <section className="relative section-padding bg-navy-dark text-white overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/tractor-highway.jpg" 
+            alt="Commercial truck on highway" 
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy-dark/70"></div>
+        </div>
+        <div className="container-custom relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Commercial Trucking Insurance for Owner-Operators
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-steel-light">
+            <p className="text-lg md:text-xl mb-8 text-gray-100">
               Independent insurance agency specializing in for-hire trucking coverage. New authority welcome.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -96,6 +107,66 @@ export default function Home() {
               </div>
               <h3 className="font-bold text-lg text-navy mb-2">Reefer</h3>
               <p className="text-steel">Temperature-controlled freight</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">
+              The Equipment We Insure
+            </h2>
+            <p className="text-steel max-w-2xl mx-auto">
+              From day cabs to long-hood classics, we provide coverage for the trucks that keep America moving.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="card overflow-hidden p-0">
+              <div className="relative h-64">
+                <Image 
+                  src="/tractor-highway.jpg" 
+                  alt="Navy tractor on rural highway" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold text-navy mb-2">On the Road</h3>
+                <p className="text-steel text-sm">Long-haul and regional operations</p>
+              </div>
+            </div>
+
+            <div className="card overflow-hidden p-0">
+              <div className="relative h-64">
+                <Image 
+                  src="/tractor-yard.jpg" 
+                  alt="White day cab tractor in yard" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold text-navy mb-2">Day Cabs</h3>
+                <p className="text-steel text-sm">Local and short-haul coverage</p>
+              </div>
+            </div>
+
+            <div className="card overflow-hidden p-0">
+              <div className="relative h-64">
+                <Image 
+                  src="/tractor-detail.jpg" 
+                  alt="Silver long-hood tractor detail" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold text-navy mb-2">Classic Rigs</h3>
+                <p className="text-steel text-sm">All makes and models welcome</p>
+              </div>
             </div>
           </div>
         </div>
