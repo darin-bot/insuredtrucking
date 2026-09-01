@@ -16,7 +16,7 @@ export default function TexasTruckingInsurance() {
               Texas Trucking Insurance
             </h1>
             <p className="text-lg text-steel mb-8">
-              Commercial trucking insurance requirements for Texas motor carriers, including TxDMV Form E filing and federal BMC-91 requirements.
+              Commercial trucking insurance requirements for Texas motor carriers, including TxDMV Form E filing and federal requirements.
             </p>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function TexasTruckingInsurance() {
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-bold text-navy mb-2">Federal: BMC-91</h3>
+                    <h3 className="font-bold text-navy mb-2">Federal Requirements</h3>
                     <p className="text-steel">
                       Required by the FMCSA for interstate commerce. Filed with the Federal Motor Carrier Safety Administration.
                     </p>
@@ -60,7 +60,7 @@ export default function TexasTruckingInsurance() {
                   Your insurance company files Form E with the Texas Department of Motor Vehicles on your behalf when you purchase coverage.
                 </p>
                 <p className="text-steel">
-                  This filing is in addition to any federal BMC-91 filing required for interstate operations.
+                  This filing is in addition to federal requirements for interstate operations.
                 </p>
               </div>
 
@@ -118,7 +118,7 @@ export default function TexasTruckingInsurance() {
                 Get Texas Trucking Insurance
               </h2>
               <p className="text-steel mb-6">
-                We handle TxDMV Form E and BMC-91 filings for your Texas trucking operation.
+                We handle TxDMV Form E and federal filings for your Texas trucking operation.
               </p>
               <Link href="/quote" className="btn-primary">
                 Get a Quote

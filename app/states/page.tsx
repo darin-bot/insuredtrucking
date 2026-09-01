@@ -81,7 +81,7 @@ export default function States() {
                   </Link>
                 </h2>
                 <p className="text-steel mb-4">
-                  Based in Benton, Kentucky, we understand Kentucky&apos;s specific requirements including KYTC Form E and BMC-91 filings.
+                  Based in Benton, Kentucky, we understand Kentucky&apos;s specific requirements including KYTC Form E and federal filings.
                 </p>
                 <Link href="/kentucky-trucking-insurance" className="text-navy hover:underline font-semibold">
                   Kentucky requirements →

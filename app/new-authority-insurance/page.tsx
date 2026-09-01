@@ -36,7 +36,7 @@ export default function NewAuthorityInsurance() {
                   For-hire trucking companies operating under FMCSA authority must maintain minimum liability coverage of $750,000 for most general freight operations. Some commodity types require higher limits.
                 </p>
                 <p className="text-steel">
-                  You must file proof of insurance (BMC-91 or state equivalent) before you can begin operating.
+                  You must file proof of insurance with the FMCSA before you can begin operating.
                 </p>
               </div>
 
@@ -105,7 +105,7 @@ export default function NewAuthorityInsurance() {
               <div className="card bg-blue-50 border-blue-200">
                 <h3 className="font-bold text-xl text-navy mb-3">State Requirements</h3>
                 <p className="text-steel mb-4">
-                  In addition to federal BMC-91 filing, some states require separate state filings:
+                  In addition to federal filing requirements, some states require separate state filings:
                 </p>
                 <ul className="space-y-2">
                   <li>

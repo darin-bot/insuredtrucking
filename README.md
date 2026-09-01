@@ -111,7 +111,6 @@ Cloudflare Pages will automatically deploy your site when you push to your produ
 ```
 ├── app/                          # Next.js App Router pages
 │   ├── about/                    # About page
-│   ├── bmc-91-filing/           # BMC-91 filing information
 │   ├── florida-trucking-insurance/
 │   ├── georgia-trucking-insurance/
 │   ├── kentucky-trucking-insurance/
@@ -136,7 +135,6 @@ Cloudflare Pages will automatically deploy your site when you push to your produ
 
 - **Home** (`/`) - Overview of services, coverage types, states served
 - **New Authority Insurance** (`/new-authority-insurance`) - Information for new trucking companies
-- **BMC-91 Filing** (`/bmc-91-filing`) - BMC-91 vs BMC-34 explanation, 20-day window
 - **Kentucky Trucking Insurance** (`/kentucky-trucking-insurance`) - KYTC Form E, KYU clarification
 - **Texas Trucking Insurance** (`/texas-trucking-insurance`) - TxDMV Form E requirements
 - **Florida Trucking Insurance** (`/florida-trucking-insurance`) - Florida coverage information

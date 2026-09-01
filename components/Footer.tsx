@@ -28,11 +28,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/bmc-91-filing" className="text-steel-light hover:text-white transition-colors">
-                  BMC-91 Filing
-                </Link>
-              </li>
-              <li>
                 <Link href="/kentucky-trucking-insurance" className="text-steel-light hover:text-white transition-colors">
                   Kentucky Trucking Insurance
                 </Link>

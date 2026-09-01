@@ -35,7 +35,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="card">
               <h3 className="font-bold text-xl text-navy mb-3">New Authority</h3>
               <p className="text-steel mb-4">
@@ -47,19 +47,9 @@ export default function Home() {
             </div>
 
             <div className="card">
-              <h3 className="font-bold text-xl text-navy mb-3">BMC-91 Filing</h3>
+              <h3 className="font-bold text-xl text-navy mb-3">State Requirements</h3>
               <p className="text-steel mb-4">
-                Need to file BMC-91 with the FMCSA? We explain the process and clear up common misconceptions.
-              </p>
-              <Link href="/bmc-91-filing" className="text-navy hover:underline font-semibold">
-                Learn more →
-              </Link>
-            </div>
-
-            <div className="card">
-              <h3 className="font-bold text-xl text-navy mb-3">State Filings</h3>
-              <p className="text-steel mb-4">
-                State-specific requirements for Kentucky, Texas, and other states we serve.
+                State-specific insurance requirements for Kentucky, Texas, and other states we serve.
               </p>
               <Link href="/states" className="text-navy hover:underline font-semibold">
                 View states →

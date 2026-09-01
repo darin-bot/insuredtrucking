@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Kentucky Trucking Insurance | KYTC Form E Filing',
-  description: 'Kentucky commercial trucking insurance requirements, KYTC Form E vs BMC-91 filing, and understanding that KYU is not insurance.',
+  description: 'Kentucky commercial trucking insurance requirements, KYTC Form E filing, and understanding that KYU is not insurance.',
 }
 
 export default function KentuckyTruckingInsurance() {
@@ -16,7 +16,7 @@ export default function KentuckyTruckingInsurance() {
               Kentucky Trucking Insurance
             </h1>
             <p className="text-lg text-steel mb-8">
-              Commercial trucking insurance requirements for Kentucky-based carriers, including KYTC Form E filing and federal BMC-91 requirements.
+              Commercial trucking insurance requirements for Kentucky-based carriers, including KYTC Form E filing and federal requirements.
             </p>
           </div>
         </div>
@@ -28,14 +28,14 @@ export default function KentuckyTruckingInsurance() {
             <div className="space-y-6">
               <div className="card">
                 <h2 className="text-2xl font-bold text-navy mb-4">
-                  Two Separate Filing Requirements
+                  Kentucky Filing Requirements
                 </h2>
                 <p className="text-steel mb-4">
-                  If you operate a for-hire trucking company based in Kentucky, you likely need to maintain two separate insurance filings:
+                  If you operate a for-hire trucking company based in Kentucky, you need to maintain proper insurance filings:
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-bold text-navy mb-2">Federal: BMC-91</h3>
+                    <h3 className="font-bold text-navy mb-2">Federal Requirements</h3>
                     <p className="text-steel">
                       Required by the FMCSA for interstate commerce. Filed with the Federal Motor Carrier Safety Administration.
                     </p>
@@ -48,7 +48,7 @@ export default function KentuckyTruckingInsurance() {
                   </div>
                 </div>
                 <p className="text-steel mt-4">
-                  Your insurance company files both forms on your behalf when you purchase appropriate coverage.
+                  Your insurance company files the required forms on your behalf when you purchase appropriate coverage.
                 </p>
               </div>
 
@@ -78,7 +78,7 @@ export default function KentuckyTruckingInsurance() {
                   KYTC Form E is the certificate of insurance that your insurance company files with the Kentucky Transportation Cabinet to prove you have the required coverage.
                 </p>
                 <p className="text-steel">
-                  This is separate from and in addition to the federal BMC-91 filing required for interstate operations.
+                  This is separate from and in addition to federal filing requirements for interstate operations.
                 </p>
               </div>
 
@@ -132,7 +132,7 @@ export default function KentuckyTruckingInsurance() {
                 Get Kentucky Trucking Insurance
               </h2>
               <p className="text-steel mb-6">
-                We handle both BMC-91 and KYTC Form E filings for your Kentucky trucking operation.
+                We handle federal and KYTC Form E filings for your Kentucky trucking operation.
               </p>
               <Link href="/quote" className="btn-primary">
                 Get a Quote
