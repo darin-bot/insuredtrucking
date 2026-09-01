@@ -225,7 +225,7 @@ export default function Quote() {
             </p>
             <div className="p-4 bg-yellow-50 border border-yellow-300 rounded-lg">
               <p className="text-sm text-steel">
-                <strong>Privacy Notice:</strong> Driver&apos;s license copies are used only to quote coverage and are not stored on this website.
+                <strong>Privacy Notice:</strong> All uploaded documents are used only to quote coverage and are not stored on this website.
               </p>
             </div>
           </div>
@@ -683,6 +683,54 @@ export default function Quote() {
                       placeholder="e.g. KY to TX, Southeast regional"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                     />
+                  </div>
+                </div>
+              </div>
+
+              {/* Documents */}
+              <div className="card">
+                <h2 className="text-2xl font-bold text-navy mb-6">Documents</h2>
+                <p className="text-sm text-steel mb-6">
+                  Optional: Attach supporting documents to help us provide an accurate quote. Multiple files can be selected for each upload.
+                </p>
+
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-navy mb-2">
+                      Attach Loss Runs
+                    </label>
+                    <input
+                      type="file"
+                      name="loss_runs"
+                      accept=".pdf,image/*"
+                      multiple
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-navy file:text-white hover:file:bg-navy-dark"
+                    />
+                    <p className="text-sm text-steel mt-1">
+                      PDF or image files. You can select multiple files at once.
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-navy mb-2">
+                      Attach IFTA Reports
+                    </label>
+                    <input
+                      type="file"
+                      name="ifta_reports"
+                      accept=".pdf,image/*"
+                      multiple
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-navy file:text-white hover:file:bg-navy-dark"
+                    />
+                    <p className="text-sm text-steel mt-1">
+                      PDF or image files. You can select multiple files at once.
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-sm text-steel">
+                      <strong className="text-navy">Privacy Notice:</strong> All uploaded documents (license copies, loss runs, IFTA reports) are used only to quote coverage and are not stored on this website.
+                    </p>
                   </div>
                 </div>
               </div>
