@@ -9,7 +9,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Affordable Truck Insurance Inc | Commercial Trucking Insurance',
   description: 'Independent insurance agency specializing in commercial trucking coverage. Serving owner-operators and for-hire trucking companies in KY, TN, TX, AL, MO, IN, FL, GA, and NC.',
-  metadataBase: new URL('https://insuredtrucking.com'),
+  metadataBase: new URL('https://www.getinsuredtrucking.com'),
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default function RootLayout({
@@ -27,7 +30,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
               name: 'Affordable Truck Insurance Inc',
-              url: 'https://insuredtrucking.com',
+              url: 'https://www.getinsuredtrucking.com',
               email: 'darin@insuredtrucking.com',
               address: {
                 '@type': 'PostalAddress',

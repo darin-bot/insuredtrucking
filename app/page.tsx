@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import HomepageFAQ from '@/components/HomepageFAQ'
 
 export default function Home() {
   return (
@@ -20,8 +21,11 @@ export default function Home() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Commercial Trucking Insurance for Owner-Operators
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-gray-100">
-              Independent insurance agency specializing in for-hire trucking coverage. New authority welcome.
+            <p className="text-lg md:text-xl mb-4 text-gray-100">
+              Independent insurance agency specializing in for-hire trucking coverage. We work with owner-operators, small fleets (2–10 trucks), and growing authorities.
+            </p>
+            <p className="text-base md:text-lg mb-8 text-gray-200">
+              New authority welcome.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/quote" className="btn-primary bg-white text-navy hover:bg-gray-100">
@@ -35,6 +39,37 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white border-y border-gray-200 py-6">
+        <div className="container-custom">
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm text-steel">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span>9 licensed states</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Trucking specialist since 2014</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+              <span>Transportation Risk Specialist (MCIEF)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              <span>New authority welcome</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
@@ -42,7 +77,7 @@ export default function Home() {
               Coverage for Your Trucking Operation
             </h2>
             <p className="text-steel max-w-2xl mx-auto">
-              We specialize in commercial trucking insurance for owner-operators and for-hire trucking companies operating general freight, flatbed, and reefer freight.
+              We specialize in commercial trucking insurance for owner-operators, small fleets (2–10 trucks), and for-hire trucking companies operating general freight, flatbed, and reefer freight.
             </p>
           </div>
 
@@ -171,6 +206,71 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">
+                How We Work
+              </h2>
+              <p className="text-lg text-steel">
+                Simple, straightforward insurance process for trucking companies
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl font-bold">1</span>
+                </div>
+                <h3 className="font-bold text-lg text-navy mb-2">Send Your Details</h3>
+                <p className="text-steel">
+                  Submit your quote request with driver, equipment, and operation details
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl font-bold">2</span>
+                </div>
+                <h3 className="font-bold text-lg text-navy mb-2">We Shop Markets</h3>
+                <p className="text-steel">
+                  We work with multiple carriers to find competitive coverage for your operation
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl font-bold">3</span>
+                </div>
+                <h3 className="font-bold text-lg text-navy mb-2">Review Terms by Email</h3>
+                <p className="text-steel">
+                  We send quotes and coverage options for you to review at your pace
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl font-bold">4</span>
+                </div>
+                <h3 className="font-bold text-lg text-navy mb-2">Bind + Filings</h3>
+                <p className="text-steel">
+                  We bind your coverage and coordinate required BMC-91 and state filings
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/quote" className="btn-primary">
+                Start Your Quote
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <HomepageFAQ />
 
       <section className="section-padding bg-navy text-white">
         <div className="container-custom">
