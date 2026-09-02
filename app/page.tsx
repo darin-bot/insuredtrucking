@@ -14,7 +14,7 @@ export default function Home() {
             className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy-dark/70"></div>
+          <div className="absolute inset-0 bg-navy-dark"></div>
         </div>
         <div className="container-custom relative z-10">
           <div className="flex flex-col items-center text-center mb-8 md:mb-12">
