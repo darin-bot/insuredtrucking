@@ -336,6 +336,27 @@ export default function Quote() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-navy mb-2">
+                      Fleet Size / Power Units *
+                    </label>
+                    <select
+                      name="fleet_size"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
+                    >
+                      <option value="">Select fleet size...</option>
+                      <option value="1">1 truck (owner-operator)</option>
+                      <option value="2">2 trucks</option>
+                      <option value="3-5">3-5 trucks</option>
+                      <option value="6-10">6-10 trucks</option>
+                      <option value="11+">11+ trucks</option>
+                    </select>
+                    <p className="text-sm text-steel mt-1">
+                      Total number of power units (tractors)
+                    </p>
+                  </div>
                 </div>
               </div>
 

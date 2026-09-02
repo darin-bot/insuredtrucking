@@ -11,17 +11,17 @@ export default function Header() {
     <>
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="container-custom px-4 md:px-6">
-          <div className="flex justify-between items-center h-16 md:h-20">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg md:text-xl text-navy">
+          <div className="flex justify-between items-center h-20 md:h-24">
+            <Link href="/" className="flex items-center gap-3 font-bold text-2xl md:text-3xl lg:text-4xl text-navy">
               <Image 
                 src="/mascot-groundhog-icon.png" 
                 alt="Mascot of Affordable Truck Insurance Inc." 
-                width={40} 
-                height={40}
-                className="rounded-full"
+                width={56} 
+                height={56}
+                className="rounded-full w-12 h-12 md:w-14 md:h-14"
               />
               <span className="hidden sm:inline">Affordable Truck Insurance Inc</span>
-              <span className="sm:hidden">Affordable Truck Insurance</span>
+              <span className="sm:hidden leading-tight">Affordable Truck Insurance</span>
             </Link>
             
             <button
@@ -91,7 +91,7 @@ export default function Header() {
         )}
       </header>
       
-      <div className="sticky top-16 md:top-20 z-40 md:hidden">
+      <div className="sticky top-20 md:top-24 z-40 md:hidden">
         <Link href="/quote" className="btn-primary w-full rounded-none">
           Get a Quote
         </Link>
