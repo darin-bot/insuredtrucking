@@ -20,10 +20,10 @@ export default function Footer() {
             </p>
             <div className="mt-6">
               <Image 
-                src="/mascot-groundhog.png" 
-                alt="Mascot of Affordable Truck Insurance Inc." 
-                width={120} 
-                height={120}
+                src="/animated-truck.svg" 
+                alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
+                width={160} 
+                height={64}
                 className="opacity-90"
               />
             </div>

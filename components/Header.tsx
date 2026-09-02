@@ -14,11 +14,11 @@ export default function Header() {
           <div className="flex justify-between items-center h-16 md:h-20">
             <Link href="/" className="flex items-center gap-2 font-bold text-lg md:text-xl text-navy">
               <Image 
-                src="/mascot-groundhog-icon.png" 
-                alt="Mascot of Affordable Truck Insurance Inc." 
-                width={40} 
-                height={40}
-                className="rounded-full"
+                src="/animated-truck.svg" 
+                alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
+                width={48} 
+                height={24}
+                className="h-auto"
               />
               <span className="hidden sm:inline">Affordable Truck Insurance Inc</span>
               <span className="sm:hidden">Affordable Truck Insurance</span>

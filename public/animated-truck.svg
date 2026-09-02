@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" aria-labelledby="truckTitle">
+  <title id="truckTitle">Animated Tractor-Trailer</title>
+  <defs>
+    <style>
+      @keyframes roll {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-1px); }
+      }
+      .wheel { 
+        animation: roll 2s linear infinite;
+        transform-origin: center;
+      }
+      .vehicle-body {
+        animation: bounce 2s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+  
+  <g class="vehicle-body">
+    <!-- Trailer -->
+    <rect x="70" y="28" width="115" height="32" rx="2" fill="#1e3a8a" stroke="#ff8c42" stroke-width="1.5"/>
+    <rect x="73" y="31" width="109" height="26" rx="1" fill="#2563eb" opacity="0.3"/>
+    
+    <!-- Side panels on trailer -->
+    <line x1="100" y1="31" x2="100" y2="57" stroke="#ff8c42" stroke-width="0.8" opacity="0.6"/>
+    <line x1="130" y1="31" x2="130" y2="57" stroke="#ff8c42" stroke-width="0.8" opacity="0.6"/>
+    <line x1="160" y1="31" x2="160" y2="57" stroke="#ff8c42" stroke-width="0.8" opacity="0.6"/>
+    
+    <!-- Tractor cabin -->
+    <path d="M 50 35 L 50 55 L 72 55 L 72 30 L 62 25 L 52 25 Z" fill="#1e3a8a" stroke="#ff8c42" stroke-width="1.5"/>
+    <rect x="52" y="38" width="16" height="12" rx="1" fill="#60a5fa" opacity="0.4"/>
+    
+    <!-- Cab details -->
+    <circle cx="58" cy="44" r="2" fill="#fbbf24" opacity="0.8"/>
+    <rect x="54" y="28" width="8" height="4" rx="1" fill="#ff8c42"/>
+    
+    <!-- Engine/hood -->
+    <rect x="15" y="45" width="38" height="10" rx="2" fill="#1e3a8a" stroke="#ff8c42" stroke-width="1.5"/>
+    <rect x="18" y="47" width="5" height="6" rx="0.5" fill="#334155"/>
+    <circle cx="45" cy="50" r="1.5" fill="#fbbf24"/>
+    
+    <!-- Connection between cab and trailer -->
+    <rect x="65" y="48" width="8" height="4" fill="#475569"/>
+  </g>
+  
+  <!-- Wheels -->
+  <g class="wheel">
+    <circle cx="35" cy="62" r="6" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+    <circle cx="35" cy="62" r="3" fill="#4b5563"/>
+    <circle cx="35" cy="62" r="1.5" fill="#9ca3af"/>
+  </g>
+  
+  <g class="wheel">
+    <circle cx="60" cy="62" r="6" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+    <circle cx="60" cy="62" r="3" fill="#4b5563"/>
+    <circle cx="60" cy="62" r="1.5" fill="#9ca3af"/>
+  </g>
+  
+  <g class="wheel">
+    <circle cx="90" cy="62" r="6" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+    <circle cx="90" cy="62" r="3" fill="#4b5563"/>
+    <circle cx="90" cy="62" r="1.5" fill="#9ca3af"/>
+  </g>
+  
+  <g class="wheel">
+    <circle cx="165" cy="62" r="6" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+    <circle cx="165" cy="62" r="3" fill="#4b5563"/>
+    <circle cx="165" cy="62" r="1.5" fill="#9ca3af"/>
+  </g>
+  
+  <g class="wheel">
+    <circle cx="175" cy="62" r="6" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+    <circle cx="175" cy="62" r="3" fill="#4b5563"/>
+    <circle cx="175" cy="62" r="1.5" fill="#9ca3af"/>
+  </g>
+</svg>
