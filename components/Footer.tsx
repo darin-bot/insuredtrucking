@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-navy-dark text-white">
       <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           <div>
             <h3 className="font-bold text-lg mb-4">Affordable Truck Insurance Inc</h3>
             <p className="text-steel-light mb-4">
@@ -67,6 +67,22 @@ export default function Footer() {
               <li className="text-steel-light">North Carolina</li>
               <li className="text-steel-light">Tennessee</li>
               <li className="text-steel-light">Texas</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/privacy" className="text-steel-light hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-steel-light hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

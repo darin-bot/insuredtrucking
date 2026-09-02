@@ -54,16 +54,16 @@ export default function KentuckyTruckingInsurance() {
 
               <div className="card bg-yellow-50 border-yellow-300">
                 <h2 className="text-2xl font-bold text-navy mb-4">
-                  Understanding KYU: Not Insurance
+                  Understanding KYU: Weight-Distance Tax, Not Insurance
                 </h2>
                 <p className="text-steel mb-4">
-                  KYU is the identifier prefix used by the Kentucky Transportation Cabinet for state authority numbers. For example, a Kentucky intrastate authority might be KYU-12345.
+                  KYU is Kentucky&apos;s weight-distance tax license required for vehicles with a gross weight of 60,000 lbs or more operating in Kentucky. It is a tax program administered by the Kentucky Transportation Cabinet.
                 </p>
                 <p className="text-steel mb-4">
-                  <strong className="text-navy">Important:</strong> KYU is not a type of insurance. It is simply the numbering system for Kentucky intrastate motor carrier authority.
+                  <strong className="text-navy">Important:</strong> KYU is not insurance and is not a state authority number. It is solely a weight-distance tax license for heavy vehicles.
                 </p>
                 <p className="text-steel">
-                  If you have a KYU authority number, you still need to maintain proper insurance coverage and file KYTC Form E with the Kentucky Transportation Cabinet.
+                  If you operate vehicles that require a KYU license, you still need to maintain proper insurance coverage and file KYTC Form E with the Kentucky Transportation Cabinet for your motor carrier authority.
                 </p>
               </div>
 
