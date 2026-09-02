@@ -20,8 +20,11 @@ export default function Home() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Commercial Trucking Insurance for Owner-Operators
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-gray-100">
-              Independent insurance agency specializing in for-hire trucking coverage. New authority welcome.
+            <p className="text-lg md:text-xl mb-4 text-gray-100">
+              Independent insurance agency specializing in for-hire trucking coverage. We work with owner-operators, small fleets (2–10 trucks), and growing authorities.
+            </p>
+            <p className="text-base md:text-lg mb-8 text-gray-200">
+              New authority welcome.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/quote" className="btn-primary bg-white text-navy hover:bg-gray-100">
@@ -42,7 +45,7 @@ export default function Home() {
               Coverage for Your Trucking Operation
             </h2>
             <p className="text-steel max-w-2xl mx-auto">
-              We specialize in commercial trucking insurance for owner-operators and for-hire trucking companies operating general freight, flatbed, and reefer freight.
+              We specialize in commercial trucking insurance for owner-operators, small fleets (2–10 trucks), and for-hire trucking companies operating general freight, flatbed, and reefer freight.
             </p>
           </div>
 
