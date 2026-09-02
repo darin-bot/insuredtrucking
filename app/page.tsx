@@ -14,10 +14,20 @@ export default function Home() {
             className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/90 to-navy-dark/70"></div>
+          <div className="absolute inset-0 bg-navy-dark"></div>
         </div>
         <div className="container-custom relative z-10">
-          <div className="max-w-3xl">
+          <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+            <Image 
+              src="/ati-logo.png" 
+              alt="Affordable Truck Insurance" 
+              width={260} 
+              height={260}
+              className="w-40 h-auto md:w-52 lg:w-64 mb-6"
+              priority
+            />
+          </div>
+          <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Commercial Trucking Insurance for Owner-Operators
             </h1>
@@ -27,7 +37,7 @@ export default function Home() {
             <p className="text-base md:text-lg mb-8 text-gray-200">
               New authority welcome.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/quote" className="btn-primary bg-white text-navy hover:bg-gray-100">
                 Get a Quote
               </Link>

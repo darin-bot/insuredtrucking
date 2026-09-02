@@ -9,20 +9,31 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm overflow-hidden">
         <div className="container-custom px-4 md:px-6">
           <div className="flex justify-between items-center h-20 md:h-24">
-            <Link href="/" className="flex items-center gap-3 font-bold text-2xl md:text-3xl lg:text-4xl text-navy">
+            <Link href="/" className="flex items-center gap-3">
               <Image 
                 src="/truck-logo.png" 
                 alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
                 width={800} 
                 height={533}
-                className="h-auto w-36 sm:w-44 md:w-52 lg:w-60"
+                className="h-16 md:h-20 w-auto object-contain object-left"
                 priority
               />
-              <span className="hidden sm:inline">Affordable Truck Insurance Inc</span>
-              <span className="sm:hidden leading-tight">Affordable Truck Insurance</span>
+              <div className="hidden sm:flex flex-col">
+                <span className="text-xs md:text-sm tracking-[0.22em] font-semibold text-navy/70 leading-none uppercase">AFFORDABLE</span>
+                <div className="text-xl md:text-2xl lg:text-[1.75rem] font-extrabold tracking-tight leading-tight">
+                  <span className="text-orange">Truck</span> <span className="text-navy">Insurance</span>
+                </div>
+                <span className="text-[10px] md:text-xs tracking-[0.18em] uppercase text-steel font-medium leading-none mt-0.5">Inc</span>
+              </div>
+              <div className="flex sm:hidden flex-col">
+                <span className="text-xs tracking-[0.22em] font-semibold text-navy/70 leading-none uppercase">AFFORDABLE</span>
+                <div className="text-xl font-extrabold tracking-tight leading-tight">
+                  <span className="text-orange">Truck</span> <span className="text-navy">Insurance</span>
+                </div>
+              </div>
             </Link>
             
             <button
