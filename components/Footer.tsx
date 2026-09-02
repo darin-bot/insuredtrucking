@@ -22,9 +22,9 @@ export default function Footer() {
               <Image 
                 src="/animated-truck.svg" 
                 alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
-                width={160} 
-                height={64}
-                className="opacity-90"
+                width={240} 
+                height={96}
+                className="opacity-90 w-48 md:w-60"
               />
             </div>
           </div>
