@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm overflow-hidden">
         <div className="container-custom px-4 md:px-6">
           <div className="flex justify-between items-center h-20 md:h-24">
             <Link href="/" className="flex items-center gap-3 font-bold text-2xl md:text-3xl lg:text-4xl text-navy">
@@ -18,7 +18,7 @@ export default function Header() {
                 alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
                 width={800} 
                 height={533}
-                className="h-auto w-36 sm:w-44 md:w-52 lg:w-60"
+                className="h-16 md:h-20 w-auto object-contain object-left"
                 priority
               />
               <span className="hidden sm:inline">Affordable Truck Insurance Inc</span>
