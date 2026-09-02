@@ -12,17 +12,15 @@ export default function Header() {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="container-custom px-4 md:px-6">
           <div className="flex justify-between items-center h-20 md:h-24">
-            <Link href="/" className="flex items-center gap-3 font-bold text-2xl md:text-3xl lg:text-4xl text-navy">
+            <Link href="/" className="flex items-center">
               <Image 
-                src="/truck-logo.png" 
-                alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
-                width={800} 
-                height={533}
-                className="h-auto w-36 sm:w-44 md:w-52 lg:w-60"
+                src="/ati-logo.png" 
+                alt="Affordable Truck Insurance" 
+                width={72} 
+                height={72}
+                className="h-14 w-auto md:h-16"
                 priority
               />
-              <span className="hidden sm:inline">Affordable Truck Insurance Inc</span>
-              <span className="sm:hidden leading-tight">Affordable Truck Insurance</span>
             </Link>
             
             <button

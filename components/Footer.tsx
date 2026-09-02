@@ -9,7 +9,15 @@ export default function Footer() {
       <div className="container-custom section-padding">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           <div>
-            <h3 className="font-bold text-lg mb-4">Affordable Truck Insurance Inc</h3>
+            <div className="mb-4">
+              <Image 
+                src="/ati-logo.png" 
+                alt="Affordable Truck Insurance" 
+                width={140} 
+                height={140}
+                className="w-28 h-auto"
+              />
+            </div>
             <p className="text-steel-light mb-4">
               Independent insurance agency specializing in commercial trucking coverage for owner-operators and for-hire trucking companies.
             </p>
@@ -18,15 +26,6 @@ export default function Footer() {
                 darin@insuredtrucking.com
               </a>
             </p>
-            <div className="mt-6">
-              <Image 
-                src="/truck-logo.png" 
-                alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
-                width={800} 
-                height={533}
-                className="opacity-90 w-56 md:w-72"
-              />
-            </div>
           </div>
 
           <div>
