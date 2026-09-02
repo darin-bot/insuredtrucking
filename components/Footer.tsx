@@ -13,9 +13,9 @@ export default function Footer() {
               <Image 
                 src="/ati-logo.png" 
                 alt="Affordable Truck Insurance" 
-                width={140} 
-                height={140}
-                className="w-28 h-auto"
+                width={180} 
+                height={180}
+                className="w-36 h-auto"
               />
             </div>
             <p className="text-steel-light mb-4">
