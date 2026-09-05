@@ -112,6 +112,31 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          <div className="card bg-white border-2 border-orange max-w-3xl mx-auto mt-8">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="flex-1">
+                <h3 className="font-bold text-xl text-navy mb-2">
+                  <svg className="w-6 h-6 inline-block mr-2 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Free New Authority Insurance Handbook
+                </h3>
+                <p className="text-steel">
+                  Download our comprehensive guide to insurance requirements, filing timelines, and your first 21 days with new FMCSA authority.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <a 
+                  href="/ati-new-authority-insurance-handbook.pdf" 
+                  className="inline-flex items-center gap-2 bg-orange hover:bg-orange/90 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 min-h-[48px] whitespace-nowrap"
+                  download
+                >
+                  Download PDF
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
