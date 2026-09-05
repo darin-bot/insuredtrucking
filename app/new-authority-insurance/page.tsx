@@ -1,12 +1,13 @@
+'use client'
+
 import type { Metadata } from 'next'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'New Authority Insurance | Affordable Truck Insurance Inc',
-  description: 'Commercial trucking insurance for new ventures and new FMCSA authority. We work with startup trucking companies.',
-}
+import { useState } from 'react'
+import HandbookDownloadModal from '@/components/HandbookDownloadModal'
 
 export default function NewAuthorityInsurance() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <>
       <section className="section-padding bg-gray-50">
@@ -18,9 +19,22 @@ export default function NewAuthorityInsurance() {
             <p className="text-lg text-steel mb-8">
               Starting a trucking company? We specialize in working with new ventures and new FMCSA authority holders. Get the coverage you need to start operating legally.
             </p>
+            <div className="text-center">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="btn-primary"
+              >
+                Download Free Handbook
+              </button>
+            </div>
           </div>
         </div>
       </section>
+      
+      <HandbookDownloadModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
 
       <section className="section-padding">
         <div className="container-custom">
@@ -223,16 +237,33 @@ export default function NewAuthorityInsurance() {
               </div>
             </div>
 
-            <div className="mt-12 text-center">
-              <h2 className="text-2xl font-bold text-navy mb-4">
-                Ready to Get Started?
-              </h2>
-              <p className="text-steel mb-6">
-                Contact us for a quote on your new authority insurance.
-              </p>
-              <Link href="/quote" className="btn-primary">
-                Get a Quote
-              </Link>
+            <div className="mt-12 space-y-8">
+              <div className="text-center p-6 bg-navy text-white rounded-lg">
+                <h2 className="text-2xl font-bold mb-4">
+                  Download Our Free New Authority Handbook
+                </h2>
+                <p className="text-steel-light mb-6">
+                  Get our comprehensive guide to starting your trucking authority, including insurance requirements, FMCSA filings, and state compliance.
+                </p>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="btn-primary bg-white text-navy hover:bg-gray-100"
+                >
+                  Download Free Handbook
+                </button>
+              </div>
+
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-navy mb-4">
+                  Ready to Get Started?
+                </h2>
+                <p className="text-steel mb-6">
+                  Contact us for a quote on your new authority insurance.
+                </p>
+                <Link href="/quote" className="btn-primary">
+                  Get a Quote
+                </Link>
+              </div>
             </div>
           </div>
         </div>

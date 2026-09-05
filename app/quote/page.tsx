@@ -3,7 +3,7 @@
 import type { Metadata } from 'next'
 import { useState } from 'react'
 
-const FORM_ACTION = 'https://formsubmit.co/darin@insuredtrucking.com'
+const FORM_ACTION = 'https://formsubmit.co/ajax/darin@insuredtrucking.com'
 
 const STATES = ['Alabama', 'Florida', 'Georgia', 'Indiana', 'Kentucky', 'Missouri', 'North Carolina', 'Tennessee', 'Texas']
 const MAKES = ['Freightliner', 'Peterbilt', 'Kenworth', 'Volvo', 'International', 'Mack', 'Western Star', 'Other']
@@ -172,14 +172,32 @@ export default function Quote() {
     try {
       const response = await fetch(FORM_ACTION, {
         method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
         body: formData
       })
 
-      if (response.ok) {
+      if (!response.ok) {
+        throw new Error('Failed to submit form')
+      }
+
+      const data = await response.json()
+      
+      // FormSubmit AJAX returns { success: true/false, message: "..." }
+      // Only mark as submitted when success is explicitly true
+      const success = data.success === true || data.success === 'true'
+      
+      if (success) {
         setSubmitted(true)
         window.scrollTo(0, 0)
       } else {
-        setError('Failed to submit form. Please try again or email darin@insuredtrucking.com directly.')
+        // FormSubmit returned success: false - form wasn't delivered
+        setError(
+          data.message || 
+          'Form submission failed. The FormSubmit form may need to be activated. ' +
+          'Please check your email or contact us directly at darin@insuredtrucking.com'
+        )
       }
     } catch (err) {
       setError('Failed to submit form. Please try again or email darin@insuredtrucking.com directly.')
