@@ -152,13 +152,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <a 
-                  href="/ati-new-authority-insurance-handbook.pdf" 
+                <button
+                  onClick={() => setIsHandbookModalOpen(true)}
                   className="inline-flex items-center gap-2 bg-orange hover:bg-orange/90 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 min-h-[48px] whitespace-nowrap"
-                  download
                 >
                   Download PDF
-                </a>
+                </button>
               </div>
             </div>
           </div>
