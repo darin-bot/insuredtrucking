@@ -1,8 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState } from 'react'
 import HomepageFAQ from '@/components/HomepageFAQ'
+import HandbookDownloadModal from '@/components/HandbookDownloadModal'
 
 export default function Home() {
+  const [isHandbookModalOpen, setIsHandbookModalOpen] = useState(false)
+
   return (
     <>
       <section className="relative section-padding bg-navy-dark text-white overflow-hidden">
@@ -76,6 +82,25 @@ export default function Home() {
               </svg>
               <span>New authority welcome</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-orange-600 text-white">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Free Download: New Authority Insurance Handbook
+            </h2>
+            <p className="text-lg mb-6 text-orange-50">
+              Essential guide for startup trucking companies. Learn about insurance requirements, federal filings, the 20-day waiting period, and what to expect during your first three weeks with new FMCSA authority.
+            </p>
+            <button
+              onClick={() => setIsHandbookModalOpen(true)}
+              className="btn-primary bg-white text-navy hover:bg-gray-100"
+            >
+              Download Free Handbook
+            </button>
           </div>
         </div>
       </section>
@@ -370,6 +395,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HandbookDownloadModal 
+        isOpen={isHandbookModalOpen} 
+        onClose={() => setIsHandbookModalOpen(false)} 
+      />
     </>
   )
 }
