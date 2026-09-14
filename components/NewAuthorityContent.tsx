@@ -186,12 +186,12 @@ export default function NewAuthorityContent() {
                     <div className="inline-block bg-navy text-white font-bold px-3 py-1 rounded">Day 2-3</div>
                   </div>
                   <div className="card flex-1 bg-blue-50 border-blue-200">
-                    <h3 className="font-semibold text-navy mb-2">Insurance Filing (BMC-91/91X)</h3>
+                    <h3 className="font-semibold text-navy mb-2">Insurance Filing with FMCSA</h3>
                     <p className="text-steel mb-3">
-                      Your insurance carrier files BMC-91 (motor carrier) or BMC-91X (broker) electronically with FMCSA. This proves you carry required liability coverage.
+                      Your insurance carrier files proof of financial responsibility electronically with FMCSA. This filing demonstrates you maintain the required liability coverage.
                     </p>
                     <p className="text-sm text-steel italic">
-                      Note: Your insurer files this form, not you. We coordinate this filing as part of binding your policy.
+                      Note: Your insurer handles this filing, not you. We coordinate this as part of binding your policy.
                     </p>
                   </div>
                 </div>
@@ -247,10 +247,10 @@ export default function NewAuthorityContent() {
                 <h3 className="font-semibold text-navy mb-3">Reality Check</h3>
                 <ul className="space-y-2 text-steel text-sm">
                   <li>• The 20-day clock starts when FMCSA grants your authority, not when you apply</li>
-                  <li>• Insurance must be in place before the BMC-91 can be filed</li>
+                  <li>• Insurance must be in place before your carrier can file proof of coverage with FMCSA</li>
                   <li>• State filings are separate from federal filings and have different requirements</li>
                   <li>• Operating before Day 21 without proper authority can result in fines and out-of-service orders</li>
-                  <li>• Not all states require additional filings beyond federal BMC-91</li>
+                  <li>• Not all states require additional filings beyond the federal insurance filing</li>
                 </ul>
               </div>
 
