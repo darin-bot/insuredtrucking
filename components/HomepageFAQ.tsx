@@ -21,8 +21,8 @@ const faqs: FAQItem[] = [
     answer: 'Yes. We specialize in working with new ventures and new FMCSA authority holders. Whether you have prior trucking experience or are starting your first operation, we can help you understand your insurance requirements and find coverage.'
   },
   {
-    question: 'What is BMC-91 and who files it?',
-    answer: 'BMC-91 (and BMC-91X for freight brokers) is the FMCSA form that proves you carry required liability insurance. Your insurance company files this form electronically with FMCSA on your behalf. You don\'t file it yourself. We work with carriers who handle this filing as part of your policy.'
+    question: 'What is the new authority waiting period?',
+    answer: 'FMCSA requires new motor carrier authorities to wait approximately 20 days after your insurance filings are submitted before you can legally operate for-hire. This waiting period gives FMCSA time to review your authority application, insurance filings, and safety documentation. You cannot haul freight for hire until this waiting period completes and your authority is granted.'
   },
   {
     question: 'What documents do I need to get a quote?',
