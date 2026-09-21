@@ -315,7 +315,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-bold text-lg text-navy mb-2">Bind + Filings</h3>
                 <p className="text-steel">
-                  We bind your coverage and coordinate required BMC-91 and state filings
+                  We bind your coverage and coordinate required federal and state insurance filings
                 </p>
               </div>
             </div>
