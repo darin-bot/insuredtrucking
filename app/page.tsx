@@ -342,7 +342,7 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
               <div className="text-left">
-                <Link href="/states#alabama" className="hover:text-steel-light transition-colors">Alabama</Link>
+                <Link href="/alabama-trucking-insurance" className="hover:text-steel-light transition-colors">Alabama</Link>
               </div>
               <div className="text-left">
                 <Link href="/florida-trucking-insurance" className="hover:text-steel-light transition-colors">Florida</Link>
@@ -351,19 +351,19 @@ export default function Home() {
                 <Link href="/georgia-trucking-insurance" className="hover:text-steel-light transition-colors">Georgia</Link>
               </div>
               <div className="text-left">
-                <Link href="/states#indiana" className="hover:text-steel-light transition-colors">Indiana</Link>
+                <Link href="/indiana-trucking-insurance" className="hover:text-steel-light transition-colors">Indiana</Link>
               </div>
               <div className="text-left">
                 <Link href="/kentucky-trucking-insurance" className="hover:text-steel-light transition-colors">Kentucky</Link>
               </div>
               <div className="text-left">
-                <Link href="/states#missouri" className="hover:text-steel-light transition-colors">Missouri</Link>
+                <Link href="/missouri-trucking-insurance" className="hover:text-steel-light transition-colors">Missouri</Link>
               </div>
               <div className="text-left">
-                <Link href="/states#north-carolina" className="hover:text-steel-light transition-colors">North Carolina</Link>
+                <Link href="/north-carolina-trucking-insurance" className="hover:text-steel-light transition-colors">North Carolina</Link>
               </div>
               <div className="text-left">
-                <Link href="/states#tennessee" className="hover:text-steel-light transition-colors">Tennessee</Link>
+                <Link href="/tennessee-trucking-insurance" className="hover:text-steel-light transition-colors">Tennessee</Link>
               </div>
               <div className="text-left">
                 <Link href="/texas-trucking-insurance" className="hover:text-steel-light transition-colors">Texas</Link>

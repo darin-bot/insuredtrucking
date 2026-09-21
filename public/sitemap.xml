@@ -26,12 +26,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.getinsuredtrucking.com/kentucky-trucking-insurance/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.getinsuredtrucking.com/texas-trucking-insurance/</loc>
+    <loc>https://www.getinsuredtrucking.com/alabama-trucking-insurance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -42,6 +37,36 @@
   </url>
   <url>
     <loc>https://www.getinsuredtrucking.com/georgia-trucking-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getinsuredtrucking.com/indiana-trucking-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getinsuredtrucking.com/kentucky-trucking-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getinsuredtrucking.com/missouri-trucking-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getinsuredtrucking.com/north-carolina-trucking-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getinsuredtrucking.com/tennessee-trucking-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getinsuredtrucking.com/texas-trucking-insurance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
