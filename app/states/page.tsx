@@ -26,14 +26,18 @@ export default function States() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="card" id="alabama">
-                <h2 className="text-2xl font-bold text-navy mb-3">Alabama</h2>
+              <div className="card">
+                <h2 className="text-2xl font-bold text-navy mb-3">
+                  <Link href="/alabama-trucking-insurance" className="hover:underline">
+                    Alabama
+                  </Link>
+                </h2>
                 <p className="text-steel mb-4">
-                  Commercial trucking insurance for Alabama-based motor carriers and owner-operators.
+                  Commercial trucking insurance for Alabama-based motor carriers and owner-operators. Coverage for general freight, flatbed, and reefer operations.
                 </p>
-                <p className="text-steel">
-                  Coverage for general freight, flatbed, and reefer operations throughout Alabama.
-                </p>
+                <Link href="/alabama-trucking-insurance" className="text-navy hover:underline font-semibold">
+                  Learn more →
+                </Link>
               </div>
 
               <div className="card">
@@ -64,14 +68,18 @@ export default function States() {
                 </Link>
               </div>
 
-              <div className="card" id="indiana">
-                <h2 className="text-2xl font-bold text-navy mb-3">Indiana</h2>
+              <div className="card">
+                <h2 className="text-2xl font-bold text-navy mb-3">
+                  <Link href="/indiana-trucking-insurance" className="hover:underline">
+                    Indiana
+                  </Link>
+                </h2>
                 <p className="text-steel mb-4">
-                  Commercial trucking insurance for Indiana-based motor carriers and owner-operators.
+                  Commercial trucking insurance for Indiana-based motor carriers and owner-operators. Coverage for general freight, flatbed, and reefer operations.
                 </p>
-                <p className="text-steel">
-                  Coverage for general freight, flatbed, and reefer operations throughout Indiana.
-                </p>
+                <Link href="/indiana-trucking-insurance" className="text-navy hover:underline font-semibold">
+                  Learn more →
+                </Link>
               </div>
 
               <div className="card">
@@ -88,34 +96,46 @@ export default function States() {
                 </Link>
               </div>
 
-              <div className="card" id="missouri">
-                <h2 className="text-2xl font-bold text-navy mb-3">Missouri</h2>
+              <div className="card">
+                <h2 className="text-2xl font-bold text-navy mb-3">
+                  <Link href="/missouri-trucking-insurance" className="hover:underline">
+                    Missouri
+                  </Link>
+                </h2>
                 <p className="text-steel mb-4">
-                  Commercial trucking insurance for Missouri-based motor carriers and owner-operators.
+                  Commercial trucking insurance for Missouri-based motor carriers and owner-operators. Coverage for general freight, flatbed, and reefer operations.
                 </p>
-                <p className="text-steel">
-                  Coverage for general freight, flatbed, and reefer operations throughout Missouri.
-                </p>
+                <Link href="/missouri-trucking-insurance" className="text-navy hover:underline font-semibold">
+                  Learn more →
+                </Link>
               </div>
 
-              <div className="card" id="north-carolina">
-                <h2 className="text-2xl font-bold text-navy mb-3">North Carolina</h2>
+              <div className="card">
+                <h2 className="text-2xl font-bold text-navy mb-3">
+                  <Link href="/north-carolina-trucking-insurance" className="hover:underline">
+                    North Carolina
+                  </Link>
+                </h2>
                 <p className="text-steel mb-4">
-                  Commercial trucking insurance for North Carolina-based motor carriers and owner-operators.
+                  Commercial trucking insurance for North Carolina-based motor carriers and owner-operators. Coverage for general freight, flatbed, and reefer operations.
                 </p>
-                <p className="text-steel">
-                  Coverage for general freight, flatbed, and reefer operations throughout North Carolina.
-                </p>
+                <Link href="/north-carolina-trucking-insurance" className="text-navy hover:underline font-semibold">
+                  Learn more →
+                </Link>
               </div>
 
-              <div className="card" id="tennessee">
-                <h2 className="text-2xl font-bold text-navy mb-3">Tennessee</h2>
+              <div className="card">
+                <h2 className="text-2xl font-bold text-navy mb-3">
+                  <Link href="/tennessee-trucking-insurance" className="hover:underline">
+                    Tennessee
+                  </Link>
+                </h2>
                 <p className="text-steel mb-4">
-                  Commercial trucking insurance for Tennessee-based motor carriers and owner-operators.
+                  Commercial trucking insurance for Tennessee-based motor carriers and owner-operators. Coverage for general freight, flatbed, and reefer operations.
                 </p>
-                <p className="text-steel">
-                  Coverage for general freight, flatbed, and reefer operations throughout Tennessee.
-                </p>
+                <Link href="/tennessee-trucking-insurance" className="text-navy hover:underline font-semibold">
+                  Learn more →
+                </Link>
               </div>
 
               <div className="card">

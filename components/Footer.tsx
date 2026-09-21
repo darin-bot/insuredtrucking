@@ -37,13 +37,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/kentucky-trucking-insurance" className="text-steel-light hover:text-white transition-colors">
-                  Kentucky Trucking Insurance
+                <Link href="/states" className="text-steel-light hover:text-white transition-colors">
+                  All States We Serve
                 </Link>
               </li>
               <li>
-                <Link href="/texas-trucking-insurance" className="text-steel-light hover:text-white transition-colors">
-                  Texas Trucking Insurance
+                <Link href="/kentucky-trucking-insurance" className="text-steel-light hover:text-white transition-colors">
+                  Kentucky Insurance
                 </Link>
               </li>
             </ul>
@@ -53,19 +53,32 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">States We Serve</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/states" className="text-steel-light hover:text-white transition-colors">
-                  All States
-                </Link>
+                <Link href="/alabama-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Alabama</Link>
               </li>
-              <li className="text-steel-light">Alabama</li>
-              <li className="text-steel-light">Florida</li>
-              <li className="text-steel-light">Georgia</li>
-              <li className="text-steel-light">Indiana</li>
-              <li className="text-steel-light">Kentucky</li>
-              <li className="text-steel-light">Missouri</li>
-              <li className="text-steel-light">North Carolina</li>
-              <li className="text-steel-light">Tennessee</li>
-              <li className="text-steel-light">Texas</li>
+              <li>
+                <Link href="/florida-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Florida</Link>
+              </li>
+              <li>
+                <Link href="/georgia-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Georgia</Link>
+              </li>
+              <li>
+                <Link href="/indiana-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Indiana</Link>
+              </li>
+              <li>
+                <Link href="/kentucky-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Kentucky</Link>
+              </li>
+              <li>
+                <Link href="/missouri-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Missouri</Link>
+              </li>
+              <li>
+                <Link href="/north-carolina-trucking-insurance" className="text-steel-light hover:text-white transition-colors">North Carolina</Link>
+              </li>
+              <li>
+                <Link href="/tennessee-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Tennessee</Link>
+              </li>
+              <li>
+                <Link href="/texas-trucking-insurance" className="text-steel-light hover:text-white transition-colors">Texas</Link>
+              </li>
             </ul>
           </div>
 
