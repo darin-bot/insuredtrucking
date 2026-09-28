@@ -107,6 +107,41 @@ export default function Home() {
 
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
+          <div className="max-w-3xl mx-auto">
+            <div className="card bg-white border-2 border-navy">
+              <div className="flex flex-col md:flex-row items-center gap-4">
+                <div className="flex-shrink-0">
+                  <svg className="w-16 h-16 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-bold text-xl text-navy mb-2">
+                    Join the New Authority Coverage Room
+                  </h3>
+                  <p className="text-steel mb-4">
+                    Free community classroom for new-authority owner-operators and small fleets. Connect with other carriers and get your questions answered.
+                  </p>
+                  <a
+                    href="https://www.skool.com/new-authority-coverage-room-6730"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-navy hover:bg-navy-light text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Join Community
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">
               Coverage for Your Trucking Operation

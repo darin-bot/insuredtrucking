@@ -126,6 +126,12 @@ export default function IndianaTruckingInsurance() {
               </div>
             </div>
 
+            <div className="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+              <p className="text-steel text-sm text-center">
+                New authority? Join our free <a href="https://www.skool.com/new-authority-coverage-room-6730" target="_blank" rel="noopener noreferrer" className="text-navy hover:underline font-semibold">New Authority Coverage Room</a> community for owner-operators and small fleets.
+              </p>
+            </div>
+
             <div className="mt-12 text-center">
               <h2 className="text-2xl font-bold text-navy mb-4">
                 Get Indiana Trucking Insurance

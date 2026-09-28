@@ -83,8 +83,18 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
+            <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
+              <li>
+                <a 
+                  href="https://www.skool.com/new-authority-coverage-room-6730" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-steel-light hover:text-white transition-colors"
+                >
+                  New Authority Coverage Room
+                </a>
+              </li>
               <li>
                 <Link href="/privacy" className="text-steel-light hover:text-white transition-colors">
                   Privacy Policy
