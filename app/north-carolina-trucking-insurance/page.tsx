@@ -84,7 +84,7 @@ export default function NorthCarolinaTruckingInsurance() {
                   Affordable Truck Insurance Inc is licensed to write commercial trucking insurance in North Carolina and eight other states. Our agency is based in Benton, Kentucky, and we work with carriers in all nine licensed states by phone and email.
                 </p>
                 <p className="text-steel">
-                  We coordinate federal and state insurance filings remotely — you don&apos;t need to visit our office. Everything is handled by phone, email, and electronic signature.
+                  We coordinate federal and state insurance filings remotely; you don&apos;t need to visit our office. Everything is handled by phone, email, and electronic signature.
                 </p>
               </div>
 

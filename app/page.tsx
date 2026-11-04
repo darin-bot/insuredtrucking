@@ -24,7 +24,7 @@ export default function Home() {
               sizes="100vw"
             />
             <Image 
-              src="/tractor-highway.jpg" 
+              src="/tractor-highway-optimized.jpg" 
               alt="Commercial truck on highway" 
               fill
               className="object-cover opacity-30"
@@ -42,7 +42,7 @@ export default function Home() {
                 srcSet="/ati-logo.webp"
               />
               <Image 
-                src="/ati-logo.png" 
+                src="/ati-logo-optimized.png" 
                 alt="Affordable Truck Insurance" 
                 width={260} 
                 height={260}
@@ -276,7 +276,7 @@ export default function Home() {
                 <picture>
                   <source type="image/webp" srcSet="/tractor-highway.webp" />
                   <Image 
-                    src="/tractor-highway.jpg" 
+                    src="/tractor-highway-optimized.jpg" 
                     alt="Navy tractor on rural highway" 
                     fill
                     className="object-cover"
@@ -295,7 +295,7 @@ export default function Home() {
                 <picture>
                   <source type="image/webp" srcSet="/tractor-yard.webp" />
                   <Image 
-                    src="/tractor-yard.jpg" 
+                    src="/tractor-yard-optimized.jpg" 
                     alt="White day cab tractor in yard" 
                     fill
                     className="object-cover"
@@ -314,7 +314,7 @@ export default function Home() {
                 <picture>
                   <source type="image/webp" srcSet="/tractor-detail.webp" />
                   <Image 
-                    src="/tractor-detail.jpg" 
+                    src="/tractor-detail-optimized.jpg" 
                     alt="Silver long-hood tractor detail" 
                     fill
                     className="object-cover"
