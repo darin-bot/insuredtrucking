@@ -181,6 +181,18 @@ export default function Home() {
             </div>
 
             <div className="card">
+              <h3 className="font-bold text-xl text-navy mb-3">Readiness Checker</h3>
+              <p className="text-steel mb-4">
+                Planning your own authority? Take our quick assessment to see how ready you are and get a personal checklist.
+              </p>
+              <Link href="/new-authority/readiness" className="text-navy hover:underline font-semibold">
+                Check your readiness →
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6">
+            <div className="card">
               <h3 className="font-bold text-xl text-navy mb-3">State Requirements</h3>
               <p className="text-steel mb-4">
                 State-specific insurance requirements for Kentucky, Texas, and other states we serve.

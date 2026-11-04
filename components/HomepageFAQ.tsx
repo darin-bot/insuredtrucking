@@ -30,7 +30,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: 'How fast can I get a quote?',
-    answer: 'We respond to quote requests within 1-2 business days by email. Complex operations or new authority may require additional underwriting review. Rush requests are possible but not guaranteed. Contact us at darin@insuredtrucking.com with your details.'
+    answer: 'We respond to quote requests within 1-2 business days by email. Complex operations or new authority may require additional underwriting review. Contact us at darin@insuredtrucking.com with your details.'
   },
   {
     question: 'Do you insure small fleets?',
