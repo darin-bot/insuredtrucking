@@ -95,12 +95,13 @@ export function buildReadinessPayload(args: {
 }
 
 async function emailReadinessResult(args: {
-  contact: Contact; quiz: QuizAnswers; level: Level; route: Route; checklist: ChecklistItem[]
+  contact: Contact; quiz: QuizAnswers; level: Level; route: Route; checklist: ChecklistItem[]; notes?: string
   fetchImpl?: typeof fetch
 }): Promise<void> {
-  const { contact, quiz, level, route, checklist, fetchImpl = fetch } = args
+  const { contact, quiz, level, route, checklist, notes, fetchImpl = fetch } = args
   const formData = new FormData()
-  formData.append('_subject', `Readiness Checker Result: ${LEVEL_LABEL[level]} - ${contact.name}`)
+  const subjectPrefix = route === 'out_of_area' ? 'Out of area - ' : ''
+  formData.append('_subject', `${subjectPrefix}Readiness Checker Result: ${LEVEL_LABEL[level]} - ${contact.name}`)
   formData.append('_captcha', 'false')
   formData.append('_template', 'table')
   formData.append('name', contact.name)
@@ -114,6 +115,9 @@ async function emailReadinessResult(args: {
   formData.append('answers', JSON.stringify(quiz.answers, null, 2))
   formData.append('compliance', quiz.compliance.join(', ') || 'None selected')
   formData.append('checklist', checklist.map((c) => c.text).join('\n'))
+  if (notes) {
+    formData.append('notes', notes)
+  }
   
   await fetchImpl('https://formsubmit.co/darin@insuredtrucking.com', {
     method: 'POST',
@@ -126,8 +130,9 @@ async function emailReadinessResult(args: {
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } })
 
-export async function handleReadiness(request: Request, env: ReadinessEnv, opts: { fetchImpl?: typeof fetch; now?: Date; log?: (...a: unknown[]) => void } = {}) {
+export async function handleReadiness(request: Request, env: ReadinessEnv, opts: { fetchImpl?: typeof fetch; now?: Date; log?: (...a: unknown[]) => void; waitUntil?: (promise: Promise<unknown>) => void } = {}) {
   const log = opts.log ?? console.log
+  const waitUntil = opts.waitUntil ?? ((p: Promise<unknown>) => { void p.catch(() => {}) })
   const now = opts.now ?? new Date()
   if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405)
   let raw: Record<string, unknown>
@@ -138,6 +143,7 @@ export async function handleReadiness(request: Request, env: ReadinessEnv, opts:
   const cv = validateContact(raw)
   if (!qv.ok || !cv.ok) return json({ ok: false, errors: { ...(qv.ok ? {} : qv.errors), ...(cv.ok ? {} : cv.errors) } }, 422)
   const quiz = qv.value, contact = cv.value
+  const notes = s(raw.notes, 1000)
   const score = scoreAnswers(quiz)
   const level = levelFor(quiz, score)
   const route = routeFor(contact.zip, quiz)
@@ -149,18 +155,23 @@ export async function handleReadiness(request: Request, env: ReadinessEnv, opts:
   const consent = captureConsent({ checked: contact.phone ? raw.consent : false, clientVersion: raw.consentVersion, ip, userAgent: request.headers.get('User-Agent'), pageUrl: contact.pageUrl, now })
   
   // Email result to darin@insuredtrucking.com (fail-safe: errors don't block the user's result)
-  emailReadinessResult({ contact, quiz, level, route, checklist, fetchImpl: opts.fetchImpl })
-    .catch((e) => log(JSON.stringify({ event: 'readiness.email_error', error: (e as Error).message })))
+  waitUntil(
+    emailReadinessResult({ contact, quiz, level, route, checklist, notes: notes || undefined, fetchImpl: opts.fetchImpl })
+      .catch((e) => log(JSON.stringify({ event: 'readiness.email_error', error: (e as Error).message })))
+  )
   
-  // HubSpot integration (inert without token/config - fails safe, no user-visible errors)
+  // HubSpot integration (only for licensed routes, inert without token/config, fails safe)
   const dryRun = env.DRY_RUN === 'true' || !env.HUBSPOT_PRIVATE_APP_TOKEN
-  if (!dryRun) {
+  if (!dryRun && route === 'licensed') {
     const payload = buildReadinessPayload({ contact, quiz, score, level, route, checklist, consent, env, submittedAt: now })
-    sendToHubSpot(payload, env.HUBSPOT_PRIVATE_APP_TOKEN!, opts.fetchImpl ?? fetch)
-      .then(() => log(JSON.stringify({ event: 'readiness.hubspot_success', route, level })))
-      .catch((e) => log(JSON.stringify({ event: 'readiness.hubspot_error', error: (e as Error).message })))
+    waitUntil(
+      sendToHubSpot(payload, env.HUBSPOT_PRIVATE_APP_TOKEN!, opts.fetchImpl ?? fetch)
+        .then(() => log(JSON.stringify({ event: 'readiness.hubspot_success', route, level })))
+        .catch((e) => log(JSON.stringify({ event: 'readiness.hubspot_error', error: (e as Error).message })))
+    )
   } else {
-    log(JSON.stringify({ event: 'readiness.processed', route, level, note: 'HubSpot inactive (no token)' }))
+    const reason = route !== 'licensed' ? 'out of service area' : 'HubSpot inactive (no token)'
+    log(JSON.stringify({ event: 'readiness.processed', route, level, note: reason }))
   }
   
   // Return assessment result. Numeric score is never returned to the browser.
