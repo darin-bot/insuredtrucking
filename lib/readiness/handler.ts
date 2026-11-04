@@ -132,7 +132,7 @@ const json = (data: unknown, status = 200) =>
 
 export async function handleReadiness(request: Request, env: ReadinessEnv, opts: { fetchImpl?: typeof fetch; now?: Date; log?: (...a: unknown[]) => void; waitUntil?: (promise: Promise<unknown>) => void } = {}) {
   const log = opts.log ?? console.log
-  const waitUntil = opts.waitUntil ?? (() => {})
+  const waitUntil = opts.waitUntil ?? ((p: Promise<unknown>) => { void p.catch(() => {}) })
   const now = opts.now ?? new Date()
   if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405)
   let raw: Record<string, unknown>
