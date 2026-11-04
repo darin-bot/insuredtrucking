@@ -40,13 +40,23 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/states" className="text-steel-light hover:text-white transition-colors">
-                  All States We Serve
+                <Link href="/owner-operator-insurance-cost" className="text-steel-light hover:text-white transition-colors">
+                  Owner Operator Insurance
                 </Link>
               </li>
               <li>
-                <Link href="/kentucky-trucking-insurance" className="text-steel-light hover:text-white transition-colors">
-                  Kentucky Insurance
+                <Link href="/small-fleet-insurance" className="text-steel-light hover:text-white transition-colors">
+                  Small Fleet Insurance
+                </Link>
+              </li>
+              <li>
+                <Link href="/hot-shot-insurance-cost" className="text-steel-light hover:text-white transition-colors">
+                  Hot Shot Insurance
+                </Link>
+              </li>
+              <li>
+                <Link href="/box-truck-insurance-cost" className="text-steel-light hover:text-white transition-colors">
+                  Box Truck Insurance
                 </Link>
               </li>
             </ul>
@@ -88,6 +98,16 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
+              <li>
+                <Link href="/states" className="text-steel-light hover:text-white transition-colors">
+                  All States We Serve
+                </Link>
+              </li>
+              <li>
+                <Link href="/truck-insurance-down-payment" className="text-steel-light hover:text-white transition-colors">
+                  Down Payments
+                </Link>
+              </li>
               <li>
                 <a 
                   href="https://www.skool.com/new-authority-coverage-room-6730" 
