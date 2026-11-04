@@ -3,6 +3,22 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Terms of Service | Affordable Truck Insurance Inc',
   description: 'Terms of service for Affordable Truck Insurance Inc, an independent insurance agency based in Benton, Kentucky.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/terms/',
+  },
+  openGraph: {
+    title: 'Terms of Service | Affordable Truck Insurance Inc',
+    description: 'Terms of service for Affordable Truck Insurance Inc, an independent insurance agency based in Benton, Kentucky.',
+    url: 'https://getinsuredtrucking.com/terms/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service | Affordable Truck Insurance Inc',
+    description: 'Terms of service for Affordable Truck Insurance Inc, an independent insurance agency based in Benton, Kentucky.',
+  },
 }
 
 export default function Terms() {

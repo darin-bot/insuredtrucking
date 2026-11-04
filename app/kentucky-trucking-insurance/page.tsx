@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Kentucky Trucking Insurance | KYTC Form E Filing',
   description: 'Kentucky commercial trucking insurance requirements, KYTC Form E filing, and understanding that KYU is not insurance.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/kentucky-trucking-insurance/',
+  },
+  openGraph: {
+    title: 'Kentucky Trucking Insurance | KYTC Form E Filing',
+    description: 'Kentucky commercial trucking insurance requirements, KYTC Form E filing, and understanding that KYU is not insurance.',
+    url: 'https://getinsuredtrucking.com/kentucky-trucking-insurance/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kentucky Trucking Insurance | KYTC Form E Filing',
+    description: 'Kentucky commercial trucking insurance requirements, KYTC Form E filing, and understanding that KYU is not insurance.',
+  },
 }
 
 export default function KentuckyTruckingInsurance() {

@@ -1,2 +1,0 @@
-# Redirect apex domain to www
-https://getinsuredtrucking.com/* https://www.getinsuredtrucking.com/:splat 301!

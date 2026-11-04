@@ -3,6 +3,22 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Privacy Policy | Affordable Truck Insurance Inc',
   description: 'Privacy policy for Affordable Truck Insurance Inc, an independent insurance agency based in Benton, Kentucky.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/privacy/',
+  },
+  openGraph: {
+    title: 'Privacy Policy | Affordable Truck Insurance Inc',
+    description: 'Privacy policy for Affordable Truck Insurance Inc, an independent insurance agency based in Benton, Kentucky.',
+    url: 'https://getinsuredtrucking.com/privacy/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | Affordable Truck Insurance Inc',
+    description: 'Privacy policy for Affordable Truck Insurance Inc, an independent insurance agency based in Benton, Kentucky.',
+  },
 }
 
 export default function Privacy() {

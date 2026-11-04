@@ -13,25 +13,43 @@ export default function Home() {
     <>
       <section className="relative section-padding bg-navy-dark text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/tractor-highway.jpg" 
-            alt="Commercial truck on highway" 
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
+          <picture>
+            <source
+              type="image/avif"
+              srcSet="/tractor-highway.avif"
+            />
+            <source
+              type="image/webp"
+              srcSet="/tractor-highway-768.webp 768w, /tractor-highway-1280.webp 1280w, /tractor-highway.webp 1920w"
+              sizes="100vw"
+            />
+            <Image 
+              src="/tractor-highway.jpg" 
+              alt="Commercial truck on highway" 
+              fill
+              className="object-cover opacity-30"
+              priority
+              quality={85}
+            />
+          </picture>
           <div className="absolute inset-0 bg-navy-dark"></div>
         </div>
         <div className="container-custom relative z-10">
           <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-            <Image 
-              src="/ati-logo.png" 
-              alt="Affordable Truck Insurance" 
-              width={260} 
-              height={260}
-              className="w-40 h-auto md:w-52 lg:w-64 mb-6"
-              priority
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/ati-logo.webp"
+              />
+              <Image 
+                src="/ati-logo.png" 
+                alt="Affordable Truck Insurance" 
+                width={260} 
+                height={260}
+                className="w-40 h-auto md:w-52 lg:w-64 mb-6"
+                priority
+              />
+            </picture>
           </div>
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
@@ -255,12 +273,16 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div className="card overflow-hidden p-0">
               <div className="relative h-64">
-                <Image 
-                  src="/tractor-highway.jpg" 
-                  alt="Navy tractor on rural highway" 
-                  fill
-                  className="object-cover"
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/tractor-highway.webp" />
+                  <Image 
+                    src="/tractor-highway.jpg" 
+                    alt="Navy tractor on rural highway" 
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
               <div className="p-4">
                 <h3 className="font-semibold text-navy mb-2">On the Road</h3>
@@ -270,12 +292,16 @@ export default function Home() {
 
             <div className="card overflow-hidden p-0">
               <div className="relative h-64">
-                <Image 
-                  src="/tractor-yard.jpg" 
-                  alt="White day cab tractor in yard" 
-                  fill
-                  className="object-cover"
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/tractor-yard.webp" />
+                  <Image 
+                    src="/tractor-yard.jpg" 
+                    alt="White day cab tractor in yard" 
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
               <div className="p-4">
                 <h3 className="font-semibold text-navy mb-2">Day Cabs</h3>
@@ -285,12 +311,16 @@ export default function Home() {
 
             <div className="card overflow-hidden p-0">
               <div className="relative h-64">
-                <Image 
-                  src="/tractor-detail.jpg" 
-                  alt="Silver long-hood tractor detail" 
-                  fill
-                  className="object-cover"
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/tractor-detail.webp" />
+                  <Image 
+                    src="/tractor-detail.jpg" 
+                    alt="Silver long-hood tractor detail" 
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
               <div className="p-4">
                 <h3 className="font-semibold text-navy mb-2">Classic Rigs</h3>

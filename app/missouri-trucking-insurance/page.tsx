@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Missouri Trucking Insurance | For-Hire Carrier Coverage',
   description: 'Commercial trucking insurance for Missouri motor carriers. Licensed in MO. Owner-operator and small fleet coverage for general freight, flatbed, and reefer.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/missouri-trucking-insurance/',
+  },
+  openGraph: {
+    title: 'Missouri Trucking Insurance | For-Hire Carrier Coverage',
+    description: 'Commercial trucking insurance for Missouri motor carriers. Licensed in MO. Owner-operator and small fleet coverage for general freight, flatbed, and reefer.',
+    url: 'https://getinsuredtrucking.com/missouri-trucking-insurance/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Missouri Trucking Insurance | For-Hire Carrier Coverage',
+    description: 'Commercial trucking insurance for Missouri motor carriers. Licensed in MO. Owner-operator and small fleet coverage for general freight, flatbed, and reefer.',
+  },
 }
 
 export default function MissouriTruckingInsurance() {

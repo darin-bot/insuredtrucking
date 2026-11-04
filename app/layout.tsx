@@ -8,10 +8,23 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Affordable Truck Insurance Inc | Commercial Trucking Insurance',
-  description: 'Independent insurance agency specializing in commercial trucking coverage. Serving owner-operators and for-hire trucking companies in KY, TN, TX, AL, MO, IN, FL, GA, and NC.',
-  metadataBase: new URL('https://www.getinsuredtrucking.com'),
+  description: 'Independent insurance agency specializing in commercial trucking coverage for owner-operators and for-hire trucking companies. Licensed in 9 states.',
+  metadataBase: new URL('https://getinsuredtrucking.com'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://getinsuredtrucking.com/',
+  },
+  openGraph: {
+    title: 'Affordable Truck Insurance Inc | Commercial Trucking Insurance',
+    description: 'Independent insurance agency specializing in commercial trucking coverage for owner-operators and for-hire trucking companies. Licensed in 9 states.',
+    url: 'https://getinsuredtrucking.com/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Affordable Truck Insurance Inc | Commercial Trucking Insurance',
+    description: 'Independent insurance agency specializing in commercial trucking coverage for owner-operators and for-hire trucking companies. Licensed in 9 states.',
   },
 }
 
@@ -30,7 +43,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
               name: 'Affordable Truck Insurance Inc',
-              url: 'https://www.getinsuredtrucking.com',
+              url: 'https://getinsuredtrucking.com',
               email: 'darin@insuredtrucking.com',
               telephone: '+1-270-205-3002',
               address: {

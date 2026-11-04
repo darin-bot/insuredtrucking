@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Alabama Trucking Insurance | Commercial Motor Carrier Coverage',
   description: 'Alabama trucking insurance for owner-operators and small fleets. Licensed in AL. General freight, flatbed, and reefer coverage.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/alabama-trucking-insurance/',
+  },
+  openGraph: {
+    title: 'Alabama Trucking Insurance | Commercial Motor Carrier Coverage',
+    description: 'Alabama trucking insurance for owner-operators and small fleets. Licensed in AL. General freight, flatbed, and reefer coverage.',
+    url: 'https://getinsuredtrucking.com/alabama-trucking-insurance/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alabama Trucking Insurance | Commercial Motor Carrier Coverage',
+    description: 'Alabama trucking insurance for owner-operators and small fleets. Licensed in AL. General freight, flatbed, and reefer coverage.',
+  },
 }
 
 export default function AlabamaTruckingInsurance() {
