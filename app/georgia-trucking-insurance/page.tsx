@@ -53,7 +53,7 @@ export default function GeorgiaTruckingInsurance() {
                   <div>
                     <h3 className="font-bold text-navy mb-2">Federal Requirements</h3>
                     <p className="text-steel">
-                      Required by the FMCSA for interstate commerce. The BMC-91 form (or electronic equivalent) is filed with the Federal Motor Carrier Safety Administration.
+                      Federal liability filings are required by the FMCSA for interstate commerce. Your insurance company files these forms electronically with the Federal Motor Carrier Safety Administration on your behalf.
                     </p>
                   </div>
                   <div>

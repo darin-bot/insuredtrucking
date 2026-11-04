@@ -1,2 +1,0 @@
-# Redirect www to bare domain
-https://www.getinsuredtrucking.com/* https://getinsuredtrucking.com/:splat 301!
