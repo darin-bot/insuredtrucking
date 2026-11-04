@@ -47,7 +47,7 @@ export default function MissouriTruckingInsurance() {
                   Missouri For-Hire Trucking Insurance
                 </h2>
                 <p className="text-steel mb-4">
-                  Missouri&apos;s central location makes it a trucking hub with major freight corridors crossing the state — I-70 running east-west through Kansas City and St. Louis, I-44 linking to Oklahoma and beyond, and I-29 connecting north to south. We work with Missouri carriers hauling across the state and nationwide.
+                  Missouri&apos;s central location makes it a trucking hub with major freight corridors crossing the state: I-70 running east-west through Kansas City and St. Louis, I-44 linking to Oklahoma and beyond, and I-29 connecting north to south. We work with Missouri carriers hauling across the state and nationwide.
                 </p>
                 <p className="text-steel mb-4">
                   We specialize in commercial trucking insurance for:
@@ -84,7 +84,7 @@ export default function MissouriTruckingInsurance() {
                   Affordable Truck Insurance Inc is licensed to write commercial trucking insurance in Missouri and eight other states. Our agency is based in Benton, Kentucky, and we serve carriers throughout our licensed states by phone and email.
                 </p>
                 <p className="text-steel">
-                  We handle federal and state insurance filings remotely. You don&apos;t need to visit our office — we coordinate everything electronically and by phone.
+                  We handle federal and state insurance filings remotely. You don&apos;t need to visit our office; we coordinate everything electronically and by phone.
                 </p>
               </div>
 

@@ -80,7 +80,7 @@ export default function TennesseeTruckingInsurance() {
                   Affordable Truck Insurance Inc is licensed to write commercial trucking insurance in Tennessee and eight other states. Our home office is in Benton, Kentucky, just across the Tennessee River from the Tennessee state line.
                 </p>
                 <p className="text-steel">
-                  We work remotely by phone and email to serve carriers throughout our licensed territory. You don&apos;t need to travel to our office — we handle everything by phone, email, and electronic signature.
+                  We work remotely by phone and email to serve carriers throughout our licensed territory. You don&apos;t need to travel to our office; we handle everything by phone, email, and electronic signature.
                 </p>
               </div>
 

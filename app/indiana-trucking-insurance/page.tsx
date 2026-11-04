@@ -47,7 +47,7 @@ export default function IndianaTruckingInsurance() {
                   Indiana Motor Carrier Insurance
                 </h2>
                 <p className="text-steel mb-4">
-                  Indiana&apos;s position in the Midwest transportation network — with I-65 running north-south, I-69 connecting to Michigan, and I-70 crossing east-west — makes it a key state for freight movement. We work with Indiana carriers hauling regionally and nationwide.
+                  Indiana&apos;s position in the Midwest transportation network (with I-65 running north-south, I-69 connecting to Michigan, and I-70 crossing east-west) makes it a key state for freight movement. We work with Indiana carriers hauling regionally and nationwide.
                 </p>
                 <p className="text-steel mb-4">
                   Our agency provides commercial trucking insurance for:
@@ -84,7 +84,7 @@ export default function IndianaTruckingInsurance() {
                   Affordable Truck Insurance Inc is licensed to write commercial trucking insurance in Indiana and eight other states. Our office is located in Benton, Kentucky, and we work with carriers throughout our nine-state footprint by phone and email.
                 </p>
                 <p className="text-steel">
-                  All insurance filings and paperwork are handled remotely. You don&apos;t need to visit our office in person — we coordinate everything electronically.
+                  All insurance filings and paperwork are handled remotely. You don&apos;t need to visit our office in person; we coordinate everything electronically.
                 </p>
               </div>
 

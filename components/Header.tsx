@@ -13,14 +13,17 @@ export default function Header() {
         <div className="container-custom px-4 md:px-6">
           <div className="flex justify-between items-center h-20 md:h-24">
             <Link href="/" className="flex items-center gap-3">
-              <Image 
-                src="/truck-logo.png" 
-                alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
-                width={800} 
-                height={533}
-                className="h-16 md:h-20 w-auto object-contain object-left"
-                priority
-              />
+              <picture>
+                <source type="image/webp" srcSet="/truck-logo.webp" />
+                <Image 
+                  src="/truck-logo-optimized.png" 
+                  alt="Tractor-Trailer - Affordable Truck Insurance Inc." 
+                  width={800} 
+                  height={533}
+                  className="h-16 md:h-20 w-auto object-contain object-left"
+                  priority
+                />
+              </picture>
               <div className="hidden sm:flex flex-col">
                 <span className="text-xs md:text-sm tracking-[0.22em] font-semibold text-navy/70 leading-none uppercase">AFFORDABLE</span>
                 <div className="text-xl md:text-2xl lg:text-[1.75rem] font-extrabold tracking-tight leading-tight">

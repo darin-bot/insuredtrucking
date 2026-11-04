@@ -47,7 +47,7 @@ export default function AlabamaTruckingInsurance() {
                   Alabama Commercial Trucking Coverage
                 </h2>
                 <p className="text-steel mb-4">
-                  Alabama sits at the crossroads of major interstate corridors — I-65 running north-south, I-59 connecting Birmingham to the Gulf Coast, and I-20 crossing east-west. We work with Alabama-based carriers hauling freight throughout the state and across the Southeast and beyond.
+                  Alabama sits at the crossroads of major interstate corridors: I-65 running north-south, I-59 connecting Birmingham to the Gulf Coast, and I-20 crossing east-west. We work with Alabama-based carriers hauling freight throughout the state and across the Southeast and beyond.
                 </p>
                 <p className="text-steel mb-4">
                   We provide commercial trucking insurance for:
@@ -84,7 +84,7 @@ export default function AlabamaTruckingInsurance() {
                   Affordable Truck Insurance Inc is licensed to write commercial trucking insurance in Alabama and eight other states. Our office is based in Benton, Kentucky, and we work with carriers throughout our licensed territory by phone and email.
                 </p>
                 <p className="text-steel">
-                  We coordinate federal and state insurance filings on your behalf. You do not need to visit our office in person — we handle the entire process remotely.
+                  We coordinate federal and state insurance filings on your behalf. You do not need to visit our office in person; we handle the entire process remotely.
                 </p>
               </div>
 
