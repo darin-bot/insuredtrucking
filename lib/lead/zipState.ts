@@ -162,9 +162,9 @@ const ZIP3_TO_STATE: Record<string, string> = {
   '542': 'WI', '543': 'WI', '544': 'WI', '545': 'WI', '546': 'WI', '547': 'WI', '548': 'WI', '549': 'WI',
   // Wyoming (820-831)
   '820': 'WY', '821': 'WY', '822': 'WY', '823': 'WY', '824': 'WY', '825': 'WY', '826': 'WY', '827': 'WY', '828': 'WY', '829': 'WY', '830': 'WY', '831': 'WY',
-  // Armed Forces
-  '090': 'AE', '091': 'AE', '092': 'AE', '093': 'AE', '094': 'AE', '095': 'AE', '096': 'AP', '097': 'AP', '098': 'AP',
-  '340': 'AA', '962': 'AP', '963': 'AP', '964': 'AP', '965': 'AP', '966': 'AP',
+  // Armed Forces (APO/FPO/DPO addresses)
+  '090': 'AE', '091': 'AE', '092': 'AE', '093': 'AE', '094': 'AE', '095': 'AE',
+  '096': 'AP', '097': 'AP', '098': 'AP', '962': 'AP', '963': 'AP', '964': 'AP', '965': 'AP', '966': 'AP',
 }
 
 export function checkZip(raw: unknown): ZipCheck {
