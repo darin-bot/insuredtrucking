@@ -10,13 +10,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           <div>
             <div className="mb-4">
-              <Image 
-                src="/ati-logo.png" 
-                alt="Affordable Truck Insurance" 
-                width={180} 
-                height={180}
-                className="w-36 h-auto"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/ati-logo.webp" />
+                <Image 
+                  src="/ati-logo-optimized.png" 
+                  alt="Affordable Truck Insurance" 
+                  width={180} 
+                  height={180}
+                  className="w-36 h-auto"
+                />
+              </picture>
             </div>
             <p className="text-steel-light mb-4">
               Independent insurance agency specializing in commercial trucking coverage for owner-operators and for-hire trucking companies.
