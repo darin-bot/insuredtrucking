@@ -94,6 +94,35 @@ export function buildReadinessPayload(args: {
   }
 }
 
+async function emailReadinessResult(args: {
+  contact: Contact; quiz: QuizAnswers; level: Level; route: Route; checklist: ChecklistItem[]
+  fetchImpl?: typeof fetch
+}): Promise<void> {
+  const { contact, quiz, level, route, checklist, fetchImpl = fetch } = args
+  const formData = new FormData()
+  formData.append('_subject', `Readiness Checker Result: ${LEVEL_LABEL[level]} - ${contact.name}`)
+  formData.append('_captcha', 'false')
+  formData.append('_template', 'table')
+  formData.append('name', contact.name)
+  formData.append('email', contact.email)
+  formData.append('phone', contact.phone ?? 'Not provided')
+  formData.append('garaging_zip', contact.zip.zip)
+  formData.append('garaging_state', contact.zip.state ?? 'Unknown')
+  formData.append('result_level', LEVEL_LABEL[level])
+  formData.append('route', ROUTE_LABEL[route])
+  formData.append('licensed_state', contact.zip.licensed ? 'Yes' : 'No')
+  formData.append('answers', JSON.stringify(quiz.answers, null, 2))
+  formData.append('compliance', quiz.compliance.join(', ') || 'None selected')
+  formData.append('checklist', checklist.map((c) => c.text).join('\n'))
+  
+  await fetchImpl('https://formsubmit.co/darin@insuredtrucking.com', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' },
+  })
+}
+
+
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } })
 
@@ -115,17 +144,25 @@ export async function handleReadiness(request: Request, env: ReadinessEnv, opts:
   const checklist = checklistFor(quiz, level)
   const body = { ok: true, level, levelLabel: LEVEL_LABEL[level], route, checklist, disclaimer: DISCLAIMER, showQuoteLink: route === 'licensed' }
   if (honeypot) return json(body) // spam trap: same response, nothing stored
+  
   const ip = request.headers.get('CF-Connecting-IP') ?? request.headers.get('X-Forwarded-For')?.split(',')[0].trim() ?? null
   const consent = captureConsent({ checked: contact.phone ? raw.consent : false, clientVersion: raw.consentVersion, ip, userAgent: request.headers.get('User-Agent'), pageUrl: contact.pageUrl, now })
-  const payload = buildReadinessPayload({ contact, quiz, score, level, route, checklist, consent, env, submittedAt: now })
+  
+  // Email result to darin@insuredtrucking.com (fail-safe: errors don't block the user's result)
+  emailReadinessResult({ contact, quiz, level, route, checklist, fetchImpl: opts.fetchImpl })
+    .catch((e) => log(JSON.stringify({ event: 'readiness.email_error', error: (e as Error).message })))
+  
+  // HubSpot integration (inert without token/config - fails safe, no user-visible errors)
   const dryRun = env.DRY_RUN === 'true' || !env.HUBSPOT_PRIVATE_APP_TOKEN
-  let hubspot: unknown = { dryRun: true }
-  if (dryRun) log(JSON.stringify({ event: 'readiness.dry_run', note: 'HubSpot payload not sent (no token or DRY_RUN=true)', route, level, payload }))
-  else {
-    try { hubspot = await sendToHubSpot(payload, env.HUBSPOT_PRIVATE_APP_TOKEN!, opts.fetchImpl ?? fetch) }
-    catch (e) { log(JSON.stringify({ event: 'readiness.hubspot_error', error: (e as Error).message })); hubspot = { error: true } }
+  if (!dryRun) {
+    const payload = buildReadinessPayload({ contact, quiz, score, level, route, checklist, consent, env, submittedAt: now })
+    sendToHubSpot(payload, env.HUBSPOT_PRIVATE_APP_TOKEN!, opts.fetchImpl ?? fetch)
+      .then(() => log(JSON.stringify({ event: 'readiness.hubspot_success', route, level })))
+      .catch((e) => log(JSON.stringify({ event: 'readiness.hubspot_error', error: (e as Error).message })))
+  } else {
+    log(JSON.stringify({ event: 'readiness.processed', route, level, note: 'HubSpot inactive (no token)' }))
   }
-  log(JSON.stringify({ event: 'readiness.processed', route, level, dryRun, hubspot }))
-  // Score is never returned to the browser.
-  return json({ ...body, dryRun })
+  
+  // Return assessment result. Numeric score is never returned to the browser.
+  return json(body)
 }

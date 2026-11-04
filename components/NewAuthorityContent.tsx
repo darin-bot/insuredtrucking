@@ -18,13 +18,19 @@ export default function NewAuthorityContent() {
             <p className="text-lg text-steel mb-8">
               Starting a trucking company? We specialize in working with new ventures and new FMCSA authority holders. Get the coverage you need to start operating legally.
             </p>
-            <div className="mt-6">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <button
                 onClick={() => setIsHandbookModalOpen(true)}
                 className="btn-primary bg-orange-600 hover:bg-orange-700"
               >
                 Download Free New Authority Handbook
               </button>
+              <Link
+                href="/new-authority/readiness"
+                className="btn-secondary border-2 border-navy text-navy hover:bg-navy hover:text-white text-center"
+              >
+                Check Your Readiness
+              </Link>
             </div>
           </div>
         </div>
