@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Indiana Trucking Insurance | Owner-Operator & Fleet Coverage',
   description: 'Indiana commercial trucking insurance for motor carriers. Licensed in IN. General freight, flatbed, and reefer coverage for owner-operators and small fleets.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/indiana-trucking-insurance/',
+  },
+  openGraph: {
+    title: 'Indiana Trucking Insurance | Owner-Operator & Fleet Coverage',
+    description: 'Indiana commercial trucking insurance for motor carriers. Licensed in IN. General freight, flatbed, and reefer coverage for owner-operators and small fleets.',
+    url: 'https://getinsuredtrucking.com/indiana-trucking-insurance/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Indiana Trucking Insurance | Owner-Operator & Fleet Coverage',
+    description: 'Indiana commercial trucking insurance for motor carriers. Licensed in IN. General freight, flatbed, and reefer coverage for owner-operators and small fleets.',
+  },
 }
 
 export default function IndianaTruckingInsurance() {

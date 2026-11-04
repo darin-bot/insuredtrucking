@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Tennessee Trucking Insurance | Owner-Operator & Fleet Coverage',
   description: 'Commercial trucking insurance for Tennessee motor carriers. Licensed in TN. Coverage for general freight, flatbed, and reefer operations.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/tennessee-trucking-insurance/',
+  },
+  openGraph: {
+    title: 'Tennessee Trucking Insurance | Owner-Operator & Fleet Coverage',
+    description: 'Commercial trucking insurance for Tennessee motor carriers. Licensed in TN. Coverage for general freight, flatbed, and reefer operations.',
+    url: 'https://getinsuredtrucking.com/tennessee-trucking-insurance/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tennessee Trucking Insurance | Owner-Operator & Fleet Coverage',
+    description: 'Commercial trucking insurance for Tennessee motor carriers. Licensed in TN. Coverage for general freight, flatbed, and reefer operations.',
+  },
 }
 
 export default function TennesseeTruckingInsurance() {

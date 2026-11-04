@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'North Carolina Trucking Insurance | Commercial Carrier Coverage',
   description: 'North Carolina trucking insurance for motor carriers. Licensed in NC. Coverage for owner-operators and small fleets hauling general freight, flatbed, and reefer.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/north-carolina-trucking-insurance/',
+  },
+  openGraph: {
+    title: 'North Carolina Trucking Insurance | Commercial Carrier Coverage',
+    description: 'North Carolina trucking insurance for motor carriers. Licensed in NC. Coverage for owner-operators and small fleets hauling general freight, flatbed, and reefer.',
+    url: 'https://getinsuredtrucking.com/north-carolina-trucking-insurance/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'North Carolina Trucking Insurance | Commercial Carrier Coverage',
+    description: 'North Carolina trucking insurance for motor carriers. Licensed in NC. Coverage for owner-operators and small fleets hauling general freight, flatbed, and reefer.',
+  },
 }
 
 export default function NorthCarolinaTruckingInsurance() {

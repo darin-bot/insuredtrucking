@@ -1,6 +1,5 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { useState } from 'react'
 
 const FORM_ACTION = 'https://formsubmit.co/darin@insuredtrucking.com'
@@ -291,12 +290,14 @@ export default function Quote() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-navy mb-2">
+                    <label htmlFor="base_state" className="block text-sm font-semibold text-navy mb-2">
                       Base State *
                     </label>
                     <select
+                      id="base_state"
                       name="base_state"
                       required
+                      aria-required="true"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                     >
                       <option value="">Select state...</option>
@@ -310,12 +311,14 @@ export default function Quote() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-navy mb-2">
+                    <label htmlFor="authority_status" className="block text-sm font-semibold text-navy mb-2">
                       Authority Status *
                     </label>
                     <select
+                      id="authority_status"
                       name="authority_status"
                       required
+                      aria-required="true"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                     >
                       <option value="">Select...</option>
@@ -338,12 +341,14 @@ export default function Quote() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-navy mb-2">
+                    <label htmlFor="fleet_size" className="block text-sm font-semibold text-navy mb-2">
                       Fleet Size / Power Units *
                     </label>
                     <select
+                      id="fleet_size"
                       name="fleet_size"
                       required
+                      aria-required="true"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                     >
                       <option value="">Select fleet size...</option>
@@ -426,12 +431,14 @@ export default function Quote() {
                           </div>
 
                           <div>
-                            <label className="block text-sm font-semibold text-navy mb-2">
+                            <label htmlFor={`driver_cdl_year_${driver.id}`} className="block text-sm font-semibold text-navy mb-2">
                               Year CDL Received
                             </label>
                             <select
+                              id={`driver_cdl_year_${driver.id}`}
                               value={driver.cdlYear}
                               onChange={(e) => updateDriver(driver.id, 'cdlYear', e.target.value)}
+                              aria-label={`Year CDL received for driver ${index + 1}`}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                             >
                               <option value="">Select year...</option>
@@ -519,12 +526,14 @@ export default function Quote() {
 
                       <div className="space-y-4">
                         <div>
-                          <label className="block text-sm font-semibold text-navy mb-2">
+                          <label htmlFor={`equipment_type_${unit.id}`} className="block text-sm font-semibold text-navy mb-2">
                             Type
                           </label>
                           <select
+                            id={`equipment_type_${unit.id}`}
                             value={unit.type}
                             onChange={(e) => updateEquipment(unit.id, 'type', e.target.value)}
+                            aria-label={`Equipment type for unit ${index + 1}`}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                           >
                             <option value="Tractor">Tractor</option>
@@ -535,12 +544,16 @@ export default function Quote() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-semibold text-navy mb-2">
+                            <label htmlFor={`equipment_year_${unit.id}`} className="block text-sm font-semibold text-navy mb-2">
                               Year *
                             </label>
                             <select
+                              id={`equipment_year_${unit.id}`}
                               value={unit.year}
                               onChange={(e) => updateEquipment(unit.id, 'year', e.target.value)}
+                              aria-label={`Year for unit ${index + 1}`}
+                              aria-required="true"
+                              aria-invalid={!!validationErrors[`equipment_${index}_year`]}
                               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent ${
                                 validationErrors[`equipment_${index}_year`] ? 'border-red-500' : 'border-gray-300'
                               }`}
@@ -551,17 +564,21 @@ export default function Quote() {
                               ))}
                             </select>
                             {validationErrors[`equipment_${index}_year`] && (
-                              <p className="text-red-600 text-sm mt-1">{validationErrors[`equipment_${index}_year`]}</p>
+                              <p className="text-red-600 text-sm mt-1" role="alert">{validationErrors[`equipment_${index}_year`]}</p>
                             )}
                           </div>
 
                           <div>
-                            <label className="block text-sm font-semibold text-navy mb-2">
+                            <label htmlFor={`equipment_make_${unit.id}`} className="block text-sm font-semibold text-navy mb-2">
                               Make *
                             </label>
                             <select
+                              id={`equipment_make_${unit.id}`}
                               value={unit.make}
                               onChange={(e) => updateEquipment(unit.id, 'make', e.target.value)}
+                              aria-label={`Make for unit ${index + 1}`}
+                              aria-required="true"
+                              aria-invalid={!!validationErrors[`equipment_${index}_make`]}
                               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent ${
                                 validationErrors[`equipment_${index}_make`] ? 'border-red-500' : 'border-gray-300'
                               }`}
@@ -572,7 +589,7 @@ export default function Quote() {
                               ))}
                             </select>
                             {validationErrors[`equipment_${index}_make`] && (
-                              <p className="text-red-600 text-sm mt-1">{validationErrors[`equipment_${index}_make`]}</p>
+                              <p className="text-red-600 text-sm mt-1" role="alert">{validationErrors[`equipment_${index}_make`]}</p>
                             )}
                           </div>
                         </div>
@@ -679,12 +696,14 @@ export default function Quote() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-navy mb-2">
+                    <label htmlFor="radius" className="block text-sm font-semibold text-navy mb-2">
                       Operating Radius *
                     </label>
                     <select
+                      id="radius"
                       name="radius"
                       required
+                      aria-required="true"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent"
                     >
                       <option value="">Select radius...</option>

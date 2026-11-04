@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'States We Serve | Affordable Truck Insurance Inc',
   description: 'Licensed to write commercial trucking insurance in Alabama, Florida, Georgia, Indiana, Kentucky, Missouri, North Carolina, Tennessee, and Texas.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/states/',
+  },
+  openGraph: {
+    title: 'States We Serve | Affordable Truck Insurance Inc',
+    description: 'Licensed to write commercial trucking insurance in Alabama, Florida, Georgia, Indiana, Kentucky, Missouri, North Carolina, Tennessee, and Texas.',
+    url: 'https://getinsuredtrucking.com/states/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'States We Serve | Affordable Truck Insurance Inc',
+    description: 'Licensed to write commercial trucking insurance in Alabama, Florida, Georgia, Indiana, Kentucky, Missouri, North Carolina, Tennessee, and Texas.',
+  },
 }
 
 export default function States() {

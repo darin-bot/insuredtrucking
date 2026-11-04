@@ -4,6 +4,22 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About Us | Affordable Truck Insurance Inc',
   description: 'Independent insurance agency based in Benton, Kentucky specializing in commercial trucking coverage. Owner Darin Austin, Transportation Risk Specialist.',
+  alternates: {
+    canonical: 'https://getinsuredtrucking.com/about/',
+  },
+  openGraph: {
+    title: 'About Us | Affordable Truck Insurance Inc',
+    description: 'Independent insurance agency based in Benton, Kentucky specializing in commercial trucking coverage. Owner Darin Austin, Transportation Risk Specialist.',
+    url: 'https://getinsuredtrucking.com/about/',
+    siteName: 'Affordable Truck Insurance Inc',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us | Affordable Truck Insurance Inc',
+    description: 'Independent insurance agency based in Benton, Kentucky specializing in commercial trucking coverage. Owner Darin Austin, Transportation Risk Specialist.',
+  },
 }
 
 export default function About() {
