@@ -7,7 +7,12 @@ import { normalizePhone, UTM_KEYS } from '../lead/validate'
 import { sendToHubSpot, type HubSpotEnv, type HubSpotPayload } from '../lead/hubspot'
 import { validateAnswers, scoreAnswers, levelFor, checklistFor, LEVEL_LABEL, DISCLAIMER, type Level, type QuizAnswers, type ChecklistItem } from './score'
 
-export interface ReadinessEnv extends HubSpotEnv { HUBSPOT_PRIVATE_APP_TOKEN?: string; DRY_RUN?: string }
+export interface ReadinessEnv extends HubSpotEnv { 
+  HUBSPOT_PRIVATE_APP_TOKEN?: string; 
+  DRY_RUN?: string;
+  READINESS_MAIL_URL?: string;
+  READINESS_MAIL_SECRET?: string;
+}
 export type Route = 'licensed' | 'out_of_area' | 'not_a_fit'
 export const SOURCE = 'readiness_checker'
 
@@ -96,34 +101,96 @@ export function buildReadinessPayload(args: {
 
 async function emailReadinessResult(args: {
   contact: Contact; quiz: QuizAnswers; level: Level; route: Route; checklist: ChecklistItem[]; notes?: string
-  fetchImpl?: typeof fetch
-}): Promise<void> {
-  const { contact, quiz, level, route, checklist, notes, fetchImpl = fetch } = args
-  const formData = new FormData()
-  const subjectPrefix = route === 'out_of_area' ? 'Out of area - ' : ''
-  formData.append('_subject', `${subjectPrefix}Readiness Checker Result: ${LEVEL_LABEL[level]} - ${contact.name}`)
-  formData.append('_captcha', 'false')
-  formData.append('_template', 'table')
-  formData.append('name', contact.name)
-  formData.append('email', contact.email)
-  formData.append('phone', contact.phone ?? 'Not provided')
-  formData.append('garaging_zip', contact.zip.zip)
-  formData.append('garaging_state', contact.zip.state ?? 'Unknown')
-  formData.append('result_level', LEVEL_LABEL[level])
-  formData.append('route', ROUTE_LABEL[route])
-  formData.append('licensed_state', contact.zip.licensed ? 'Yes' : 'No')
-  formData.append('answers', JSON.stringify(quiz.answers, null, 2))
-  formData.append('compliance', quiz.compliance.join(', ') || 'None selected')
-  formData.append('checklist', checklist.map((c) => c.text).join('\n'))
-  if (notes) {
-    formData.append('notes', notes)
+  env: ReadinessEnv; fetchImpl?: typeof fetch
+}): Promise<{ ok: boolean; error?: string }> {
+  const { contact, quiz, level, route, checklist, notes, env, fetchImpl = fetch } = args
+  
+  const mailUrl = env.READINESS_MAIL_URL ?? 'https://ati-readiness-mail.darin-06a.workers.dev/'
+  const mailSecret = env.READINESS_MAIL_SECRET
+  
+  if (!mailSecret) {
+    return { ok: false, error: 'mail not configured' }
   }
   
-  await fetchImpl('https://formsubmit.co/darin@insuredtrucking.com', {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' },
-  })
+  const subjectPrefix = route === 'out_of_area' ? 'Out of area - ' : ''
+  const subject = `${subjectPrefix}Readiness Checker Result: ${LEVEL_LABEL[level]} - ${contact.name}`
+  
+  // Build plain-text body
+  const textLines = [
+    `Name: ${contact.name}`,
+    `Email: ${contact.email}`,
+    `Phone: ${contact.phone ?? 'Not provided'}`,
+    `Garaging ZIP: ${contact.zip.zip}`,
+    `State: ${contact.zip.state ?? 'Unknown'}`,
+    `Licensed State: ${contact.zip.licensed ? 'Yes' : 'No'}`,
+    '',
+    `Result Level: ${LEVEL_LABEL[level]}`,
+    `Route: ${ROUTE_LABEL[route]}`,
+    '',
+    'Answers:',
+    JSON.stringify(quiz.answers, null, 2),
+    '',
+    `Compliance: ${quiz.compliance.join(', ') || 'None selected'}`,
+    '',
+    'Checklist:',
+    ...checklist.map((c) => `- ${c.text}`),
+  ]
+  if (notes) {
+    textLines.push('', 'Notes:', notes)
+  }
+  const text = textLines.join('\n')
+  
+  // Build HTML table
+  const htmlRows = [
+    `<tr><td><strong>Name</strong></td><td>${escapeHtml(contact.name)}</td></tr>`,
+    `<tr><td><strong>Email</strong></td><td>${escapeHtml(contact.email)}</td></tr>`,
+    `<tr><td><strong>Phone</strong></td><td>${escapeHtml(contact.phone ?? 'Not provided')}</td></tr>`,
+    `<tr><td><strong>Garaging ZIP</strong></td><td>${escapeHtml(contact.zip.zip)}</td></tr>`,
+    `<tr><td><strong>State</strong></td><td>${escapeHtml(contact.zip.state ?? 'Unknown')}</td></tr>`,
+    `<tr><td><strong>Licensed State</strong></td><td>${contact.zip.licensed ? 'Yes' : 'No'}</td></tr>`,
+    `<tr><td><strong>Result Level</strong></td><td>${escapeHtml(LEVEL_LABEL[level])}</td></tr>`,
+    `<tr><td><strong>Route</strong></td><td>${escapeHtml(ROUTE_LABEL[route])}</td></tr>`,
+    `<tr><td><strong>Answers</strong></td><td><pre>${escapeHtml(JSON.stringify(quiz.answers, null, 2))}</pre></td></tr>`,
+    `<tr><td><strong>Compliance</strong></td><td>${escapeHtml(quiz.compliance.join(', ') || 'None selected')}</td></tr>`,
+    `<tr><td><strong>Checklist</strong></td><td>${checklist.map((c) => escapeHtml(c.text)).join('<br>')}</td></tr>`,
+  ]
+  if (notes) {
+    htmlRows.push(`<tr><td><strong>Notes</strong></td><td>${escapeHtml(notes)}</td></tr>`)
+  }
+  const html = `<table border="1" cellpadding="8" cellspacing="0">${htmlRows.join('')}</table>`
+  
+  try {
+    const response = await fetchImpl(mailUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${mailSecret}`,
+      },
+      body: JSON.stringify({ subject, text, html }),
+    })
+    
+    if (!response.ok) {
+      const errorText = await response.text()
+      return { ok: false, error: `HTTP ${response.status}: ${errorText}` }
+    }
+    
+    const result = await response.json() as { ok: boolean; messageId?: string; error?: string; code?: string }
+    if (!result.ok) {
+      return { ok: false, error: result.error ?? `Worker error (code: ${result.code ?? 'unknown'})` }
+    }
+    
+    return { ok: true }
+  } catch (err) {
+    return { ok: false, error: (err as Error).message }
+  }
+}
+
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
 }
 
 
@@ -148,17 +215,41 @@ export async function handleReadiness(request: Request, env: ReadinessEnv, opts:
   const level = levelFor(quiz, score)
   const route = routeFor(contact.zip, quiz)
   const checklist = checklistFor(quiz, level)
-  const body = { ok: true, level, levelLabel: LEVEL_LABEL[level], route, checklist, disclaimer: DISCLAIMER, showQuoteLink: route === 'licensed' }
-  if (honeypot) return json(body) // spam trap: same response, nothing stored
   
   const ip = request.headers.get('CF-Connecting-IP') ?? request.headers.get('X-Forwarded-For')?.split(',')[0].trim() ?? null
   const consent = captureConsent({ checked: contact.phone ? raw.consent : false, clientVersion: raw.consentVersion, ip, userAgent: request.headers.get('User-Agent'), pageUrl: contact.pageUrl, now })
   
-  // Email result to darin@insuredtrucking.com (fail-safe: errors don't block the user's result)
-  waitUntil(
-    emailReadinessResult({ contact, quiz, level, route, checklist, notes: notes || undefined, fetchImpl: opts.fetchImpl })
-      .catch((e) => log(JSON.stringify({ event: 'readiness.email_error', error: (e as Error).message })))
-  )
+  // Email result to darin@insuredtrucking.com (await to report emailSent accurately)
+  let emailSent = false
+  let emailError: string | undefined
+  if (honeypot) {
+    // spam trap: same response, nothing stored or sent
+    emailSent = false
+  } else {
+    const emailResult = await emailReadinessResult({ 
+      contact, quiz, level, route, checklist, notes: notes || undefined, env, fetchImpl: opts.fetchImpl 
+    })
+    emailSent = emailResult.ok
+    if (emailResult.ok) {
+      log(JSON.stringify({ event: 'readiness.email_ok', route, level }))
+    } else {
+      emailError = emailResult.error
+      log(JSON.stringify({ event: 'readiness.email_error', error: emailResult.error }))
+    }
+  }
+  
+  const body = { 
+    ok: true, 
+    level, 
+    levelLabel: LEVEL_LABEL[level], 
+    route, 
+    checklist, 
+    disclaimer: DISCLAIMER, 
+    showQuoteLink: route === 'licensed',
+    emailSent,
+    ...(emailError ? { emailError } : {}),
+  }
+  if (honeypot) return json(body) // spam trap: same response, nothing stored
   
   // HubSpot integration (only for licensed routes, inert without token/config, fails safe)
   const dryRun = env.DRY_RUN === 'true' || !env.HUBSPOT_PRIVATE_APP_TOKEN

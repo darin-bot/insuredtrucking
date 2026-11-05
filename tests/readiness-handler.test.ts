@@ -2,7 +2,7 @@
  * Tests for the readiness checker handler
  */
 
-import { routeFor } from '../lib/readiness/handler';
+import { routeFor, handleReadiness, type ReadinessEnv } from '../lib/readiness/handler';
 import type { ZipCheck } from '../lib/lead/zipState';
 
 describe('Readiness Handler', () => {
@@ -162,6 +162,271 @@ describe('Readiness Handler', () => {
       prohibitedTerms.forEach(term => {
         expect(sampleText.toLowerCase()).not.toContain(term.toLowerCase());
       });
+    });
+  });
+
+  describe('Email worker integration', () => {
+    const createValidRequest = () => {
+      const body = {
+        name: 'John Doe',
+        email: 'john@example.com',
+        phone: '6155551234',
+        zip: '37203',
+        consent: true,
+        consentVersion: 'ati-consent-2026-10-25-v1',
+        pageUrl: 'https://insuredtrucking.com/new-authority/readiness/',
+        answers: {
+          cdlYears: '5plus',
+          incidents: 'none',
+          authorityAge: '12plus',
+          dotMc: 'dot_mc',
+          entity: 'llc',
+          ein: 'yes',
+          truckOwnership: 'own',
+          truckAge: 'lt10',
+          truckValue: '40to80k',
+          operationType: 'dry_van',
+          downPayment: '3to6k',
+        },
+        compliance: ['consortium', 'eld', 'maintenance'],
+      };
+      return new Request('https://example.com/api/readiness', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+    };
+
+    test('emailSent is true when mail worker succeeds', async () => {
+      const mockFetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ ok: true, messageId: 'test-id' }),
+      });
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_URL: 'https://test-mail.workers.dev/',
+        READINESS_MAIL_SECRET: 'test-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      const response = await handleReadiness(request, env, { fetchImpl: mockFetch });
+      const result = await response.json();
+
+      expect(result.emailSent).toBe(true);
+      expect(result.emailError).toBeUndefined();
+      expect(mockFetch).toHaveBeenCalledWith(
+        'https://test-mail.workers.dev/',
+        expect.objectContaining({
+          method: 'POST',
+          headers: expect.objectContaining({
+            'Authorization': 'Bearer test-secret',
+            'Content-Type': 'application/json',
+          }),
+        })
+      );
+    });
+
+    test('emailSent is false when READINESS_MAIL_SECRET is missing', async () => {
+      const mockFetch = jest.fn();
+
+      const env: ReadinessEnv = {
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      const response = await handleReadiness(request, env, { fetchImpl: mockFetch });
+      const result = await response.json();
+
+      expect(result.emailSent).toBe(false);
+      expect(result.emailError).toBe('mail not configured');
+      expect(mockFetch).not.toHaveBeenCalled();
+    });
+
+    test('emailSent is false when worker returns error', async () => {
+      const mockFetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ ok: false, error: 'Invalid recipient', code: 'INVALID_RECIPIENT' }),
+      });
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_SECRET: 'test-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      const response = await handleReadiness(request, env, { fetchImpl: mockFetch });
+      const result = await response.json();
+
+      expect(result.emailSent).toBe(false);
+      expect(result.emailError).toContain('Invalid recipient');
+    });
+
+    test('emailSent is false when worker HTTP request fails', async () => {
+      const mockFetch = jest.fn().mockResolvedValue({
+        ok: false,
+        status: 401,
+        text: async () => 'Unauthorized',
+      });
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_SECRET: 'wrong-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      const response = await handleReadiness(request, env, { fetchImpl: mockFetch });
+      const result = await response.json();
+
+      expect(result.emailSent).toBe(false);
+      expect(result.emailError).toContain('HTTP 401');
+      expect(result.emailError).toContain('Unauthorized');
+    });
+
+    test('emailSent is false when fetch throws', async () => {
+      const mockFetch = jest.fn().mockRejectedValue(new Error('Network failure'));
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_SECRET: 'test-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      const response = await handleReadiness(request, env, { fetchImpl: mockFetch });
+      const result = await response.json();
+
+      expect(result.emailSent).toBe(false);
+      expect(result.emailError).toBe('Network failure');
+    });
+
+    test('out_of_area prefix in email subject', async () => {
+      const mockFetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ ok: true, messageId: 'test-id' }),
+      });
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_SECRET: 'test-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const body = {
+        name: 'Jane Smith',
+        email: 'jane@example.com',
+        zip: '90210', // California, out of area
+        answers: {
+          cdlYears: '5plus',
+          incidents: 'none',
+          authorityAge: '12plus',
+          dotMc: 'dot_mc',
+          entity: 'llc',
+          ein: 'yes',
+          truckOwnership: 'own',
+          truckAge: 'lt10',
+          truckValue: '40to80k',
+          operationType: 'dry_van',
+          downPayment: '3to6k',
+        },
+        compliance: ['consortium'],
+      };
+
+      const request = new Request('https://example.com/api/readiness', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      await handleReadiness(request, env, { fetchImpl: mockFetch });
+
+      const callArgs = mockFetch.mock.calls[0];
+      const requestBody = JSON.parse(callArgs[1].body);
+      expect(requestBody.subject).toContain('Out of area - Readiness Checker Result:');
+      expect(requestBody.subject).toContain('Jane Smith');
+    });
+
+    test('email body includes all required fields', async () => {
+      const mockFetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ ok: true, messageId: 'test-id' }),
+      });
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_SECRET: 'test-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      await handleReadiness(request, env, { fetchImpl: mockFetch });
+
+      const callArgs = mockFetch.mock.calls[0];
+      const requestBody = JSON.parse(callArgs[1].body);
+
+      expect(requestBody.text).toContain('Name: John Doe');
+      expect(requestBody.text).toContain('Email: john@example.com');
+      expect(requestBody.text).toContain('Phone:');
+      expect(requestBody.text).toContain('Garaging ZIP: 37203');
+      expect(requestBody.text).toContain('State: TN');
+      expect(requestBody.text).toContain('Result Level:');
+      expect(requestBody.text).toContain('Route:');
+      expect(requestBody.text).toContain('Answers:');
+      expect(requestBody.text).toContain('Compliance:');
+      expect(requestBody.text).toContain('Checklist:');
+
+      expect(requestBody.html).toContain('<table');
+      expect(requestBody.html).toContain('John Doe');
+      expect(requestBody.html).toContain('john@example.com');
+    });
+
+    test('email body does not contain banned terms', async () => {
+      const mockFetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ ok: true, messageId: 'test-id' }),
+      });
+
+      const env: ReadinessEnv = {
+        READINESS_MAIL_SECRET: 'test-secret',
+        HUBSPOT_PIPELINE_ID: 'test',
+        HUBSPOT_STAGE_NEW: 'new',
+        HUBSPOT_STAGE_OUT_OF_AREA: 'out',
+        HUBSPOT_STAGE_NOT_A_FIT: 'not-fit',
+      };
+
+      const request = createValidRequest();
+      await handleReadiness(request, env, { fetchImpl: mockFetch });
+
+      const callArgs = mockFetch.mock.calls[0];
+      const requestBody = JSON.parse(callArgs[1].body);
+
+      const prohibitedTerms = ['BMC', 'cheapest', 'guarantee', 'Benton Insurance'];
+      const combinedContent = `${requestBody.text} ${requestBody.html} ${requestBody.subject}`.toLowerCase();
+
+      prohibitedTerms.forEach(term => {
+        expect(combinedContent).not.toContain(term.toLowerCase());
+      });
+
+      expect(combinedContent).not.toContain('—');
+      expect(combinedContent).not.toContain('–');
     });
   });
 });
