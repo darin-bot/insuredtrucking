@@ -165,7 +165,7 @@ describe('Readiness Handler', () => {
     });
   });
 
-  describe('Email worker integration', () => {
+  describe('Email Resend integration', () => {
     const createValidRequest = () => {
       const body = {
         name: 'John Doe',
@@ -197,15 +197,14 @@ describe('Readiness Handler', () => {
       });
     };
 
-    test('emailSent is true when mail worker succeeds', async () => {
+    test('emailSent is true when Resend succeeds', async () => {
       const mockFetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ ok: true, messageId: 'test-id' }),
+        json: async () => ({ id: 'resend-email-id' }),
       });
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_URL: 'https://test-mail.workers.dev/',
-        READINESS_MAIL_SECRET: 'test-secret',
+        RESEND_API_KEY: 'test-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -219,18 +218,23 @@ describe('Readiness Handler', () => {
       expect(result.emailSent).toBe(true);
       expect(result.emailError).toBeUndefined();
       expect(mockFetch).toHaveBeenCalledWith(
-        'https://test-mail.workers.dev/',
+        'https://api.resend.com/emails',
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
-            'Authorization': 'Bearer test-secret',
+            'Authorization': 'Bearer test-api-key',
             'Content-Type': 'application/json',
           }),
         })
       );
+      
+      const callArgs = mockFetch.mock.calls[0];
+      const requestBody = JSON.parse(callArgs[1].body);
+      expect(requestBody.from).toBe('ATI Readiness Checker <readiness@getinsuredtrucking.com>');
+      expect(requestBody.to).toEqual(['darin@insuredtrucking.com']);
     });
 
-    test('emailSent is false when READINESS_MAIL_SECRET is missing', async () => {
+    test('emailSent is false when RESEND_API_KEY is missing', async () => {
       const mockFetch = jest.fn();
 
       const env: ReadinessEnv = {
@@ -249,14 +253,14 @@ describe('Readiness Handler', () => {
       expect(mockFetch).not.toHaveBeenCalled();
     });
 
-    test('emailSent is false when worker returns error', async () => {
+    test('emailSent is false when Resend returns invalid response', async () => {
       const mockFetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ ok: false, error: 'Invalid recipient', code: 'INVALID_RECIPIENT' }),
+        json: async () => ({ message: 'Invalid request' }),
       });
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_SECRET: 'test-secret',
+        RESEND_API_KEY: 'test-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -268,10 +272,10 @@ describe('Readiness Handler', () => {
       const result = await response.json();
 
       expect(result.emailSent).toBe(false);
-      expect(result.emailError).toContain('Invalid recipient');
+      expect(result.emailError).toBe('provider error');
     });
 
-    test('emailSent is false when worker HTTP request fails', async () => {
+    test('emailSent is false when Resend HTTP request fails', async () => {
       const mockFetch = jest.fn().mockResolvedValue({
         ok: false,
         status: 401,
@@ -279,7 +283,7 @@ describe('Readiness Handler', () => {
       });
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_SECRET: 'wrong-secret',
+        RESEND_API_KEY: 'wrong-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -291,15 +295,14 @@ describe('Readiness Handler', () => {
       const result = await response.json();
 
       expect(result.emailSent).toBe(false);
-      expect(result.emailError).toContain('HTTP 401');
-      expect(result.emailError).toContain('Unauthorized');
+      expect(result.emailError).toBe('HTTP 401');
     });
 
     test('emailSent is false when fetch throws', async () => {
       const mockFetch = jest.fn().mockRejectedValue(new Error('Network failure'));
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_SECRET: 'test-secret',
+        RESEND_API_KEY: 'test-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -311,17 +314,17 @@ describe('Readiness Handler', () => {
       const result = await response.json();
 
       expect(result.emailSent).toBe(false);
-      expect(result.emailError).toBe('Network failure');
+      expect(result.emailError).toBe('network error');
     });
 
     test('out_of_area prefix in email subject', async () => {
       const mockFetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ ok: true, messageId: 'test-id' }),
+        json: async () => ({ id: 'resend-email-id' }),
       });
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_SECRET: 'test-secret',
+        RESEND_API_KEY: 'test-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -365,11 +368,11 @@ describe('Readiness Handler', () => {
     test('email body includes all required fields', async () => {
       const mockFetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ ok: true, messageId: 'test-id' }),
+        json: async () => ({ id: 'resend-email-id' }),
       });
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_SECRET: 'test-secret',
+        RESEND_API_KEY: 'test-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -401,11 +404,11 @@ describe('Readiness Handler', () => {
     test('email body does not contain banned terms', async () => {
       const mockFetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({ ok: true, messageId: 'test-id' }),
+        json: async () => ({ id: 'resend-email-id' }),
       });
 
       const env: ReadinessEnv = {
-        READINESS_MAIL_SECRET: 'test-secret',
+        RESEND_API_KEY: 'test-api-key',
         HUBSPOT_PIPELINE_ID: 'test',
         HUBSPOT_STAGE_NEW: 'new',
         HUBSPOT_STAGE_OUT_OF_AREA: 'out',
@@ -418,7 +421,7 @@ describe('Readiness Handler', () => {
       const callArgs = mockFetch.mock.calls[0];
       const requestBody = JSON.parse(callArgs[1].body);
 
-      const prohibitedTerms = ['BMC', 'cheapest', 'guarantee', 'Benton Insurance'];
+      const prohibitedTerms = ['BMC', 'cheapest', 'guarantee', 'Benton Insurance', 'intermodal'];
       const combinedContent = `${requestBody.text} ${requestBody.html} ${requestBody.subject}`.toLowerCase();
 
       prohibitedTerms.forEach(term => {

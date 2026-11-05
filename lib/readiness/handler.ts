@@ -10,8 +10,7 @@ import { validateAnswers, scoreAnswers, levelFor, checklistFor, LEVEL_LABEL, DIS
 export interface ReadinessEnv extends HubSpotEnv { 
   HUBSPOT_PRIVATE_APP_TOKEN?: string; 
   DRY_RUN?: string;
-  READINESS_MAIL_URL?: string;
-  READINESS_MAIL_SECRET?: string;
+  RESEND_API_KEY?: string;
 }
 export type Route = 'licensed' | 'out_of_area' | 'not_a_fit'
 export const SOURCE = 'readiness_checker'
@@ -105,10 +104,9 @@ async function emailReadinessResult(args: {
 }): Promise<{ ok: boolean; error?: string }> {
   const { contact, quiz, level, route, checklist, notes, env, fetchImpl = fetch } = args
   
-  const mailUrl = env.READINESS_MAIL_URL ?? 'https://ati-readiness-mail.darin-06a.workers.dev/'
-  const mailSecret = env.READINESS_MAIL_SECRET
+  const apiKey = env.RESEND_API_KEY
   
-  if (!mailSecret) {
+  if (!apiKey) {
     return { ok: false, error: 'mail not configured' }
   }
   
@@ -160,28 +158,34 @@ async function emailReadinessResult(args: {
   const html = `<table border="1" cellpadding="8" cellspacing="0">${htmlRows.join('')}</table>`
   
   try {
-    const response = await fetchImpl(mailUrl, {
+    const response = await fetchImpl('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${mailSecret}`,
+        'Authorization': `Bearer ${apiKey}`,
       },
-      body: JSON.stringify({ subject, text, html }),
+      body: JSON.stringify({
+        from: 'ATI Readiness Checker <readiness@getinsuredtrucking.com>',
+        to: ['darin@insuredtrucking.com'],
+        subject,
+        text,
+        html,
+      }),
     })
     
     if (!response.ok) {
       const errorText = await response.text()
-      return { ok: false, error: `HTTP ${response.status}: ${errorText}` }
+      return { ok: false, error: `HTTP ${response.status}` }
     }
     
-    const result = await response.json() as { ok: boolean; messageId?: string; error?: string; code?: string }
-    if (!result.ok) {
-      return { ok: false, error: result.error ?? `Worker error (code: ${result.code ?? 'unknown'})` }
+    const result = await response.json() as { id?: string; message?: string }
+    if (!result.id) {
+      return { ok: false, error: 'provider error' }
     }
     
     return { ok: true }
   } catch (err) {
-    return { ok: false, error: (err as Error).message }
+    return { ok: false, error: 'network error' }
   }
 }
 

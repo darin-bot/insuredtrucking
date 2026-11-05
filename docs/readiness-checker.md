@@ -1,6 +1,6 @@
 # New Authority Readiness Checker
 
-Mobile-first quiz at /new-authority/readiness/. Posts JSON to the Pages Function /api/readiness (functions/api/readiness.ts, logic in lib/readiness/). Same env vars as the lead engine (docs/lead-engine-p1.md). Without HUBSPOT_PRIVATE_APP_TOKEN, or with DRY_RUN=true, nothing is written to HubSpot; the payload is logged. Email notifications are sent to darin@insuredtrucking.com via the Cloudflare Worker mail helper (https://ati-readiness-mail.darin-06a.workers.dev/) with authenticated POST requests. Email sends are awaited to accurately report emailSent status in the response.
+Mobile-first quiz at /new-authority/readiness/. Posts JSON to the Pages Function /api/readiness (functions/api/readiness.ts, logic in lib/readiness/). Same env vars as the lead engine (docs/lead-engine-p1.md). Without HUBSPOT_PRIVATE_APP_TOKEN, or with DRY_RUN=true, nothing is written to HubSpot; the payload is logged. Email notifications are sent to darin@insuredtrucking.com via Resend API with authenticated POST requests. Email sends are awaited to accurately report emailSent status in the response.
 
 ## Questions
 CDL years, accidents and violations (3 years), time since authority (or not filed), USDOT/MC status, entity, EIN, truck ownership, truck age, truck value, operation type, down-payment budget, safety and compliance plan (consortium, ELD, maintenance files, UCR, IFTA, IRP and state permits), then name, email, garaging ZIP, optional phone, optional notes. The TCPA box appears only when a phone is entered, unchecked and optional, using CONSENT_TEXT and CONSENT_VERSION from lib/lead/consent.ts.
@@ -29,11 +29,14 @@ The readiness checker accepts any valid 5-digit US ZIP code. The lib/lead/zipSta
 All valid ZIPs are accepted; unmapped or out-of-state ZIPs never cause errors, they simply route to out_of_area.
 
 ## Email Notifications
-All submissions trigger email notifications sent to darin@insuredtrucking.com via the Cloudflare Worker mail helper (ati-readiness-mail). The email send is awaited so the response includes emailSent (boolean) and emailError (optional string) fields. If READINESS_MAIL_SECRET is missing, emailSent is false with emailError set to "mail not configured".
+All submissions trigger email notifications sent to darin@insuredtrucking.com via Resend API. The email send is awaited so the response includes emailSent (boolean) and emailError (optional string) fields. If RESEND_API_KEY is missing, emailSent is false with emailError set to "mail not configured".
 
 ### Environment Variables
-- **READINESS_MAIL_URL** (optional): Worker endpoint URL, defaults to https://ati-readiness-mail.darin-06a.workers.dev/
-- **READINESS_MAIL_SECRET** (required): Bearer token for Authorization header
+- **RESEND_API_KEY** (required): Resend API key for authentication
+
+### Email Details
+- **Sender**: ATI Readiness Checker <readiness@getinsuredtrucking.com>
+- **Recipient**: darin@insuredtrucking.com (hardcoded)
 
 ### Email Subject Lines
 - **Licensed states**: "Readiness Checker Result: [Level] - [Name]"
@@ -43,9 +46,11 @@ All submissions trigger email notifications sent to darin@insuredtrucking.com vi
 Emails include: name, email, phone, garaging ZIP, state, result level, route, licensed status, quiz answers (JSON), compliance selections, and the checklist. Optional notes field is included when provided. Both plain-text and HTML (table) formats are sent.
 
 ### Response Fields
-The API response now includes:
-- **emailSent** (boolean): true if email was successfully sent, false otherwise
-- **emailError** (string, optional): error message if email failed (e.g., "mail not configured", HTTP errors)
+The API response includes:
+- **emailSent** (boolean): true if provider accepted the email, false otherwise
+- **emailError** (string, optional): sanitized error message if email failed (e.g., "mail not configured", "HTTP 401", "network error", "provider error")
+
+Note: emailSent=true means the provider accepted the email for delivery, not that it reached the inbox. Provider responses and sensitive details are never exposed in logs or API responses.
 
 ## HubSpot properties for Cole (contact and deal, all single-line text unless noted)
 New: ati_readiness_source, ati_readiness_score (number), ati_readiness_level (Ready / Almost ready / Not ready yet / Not a fit), ati_readiness_route (licensed / out_of_area / not_a_fit), ati_readiness_answers (multi-line, JSON), ati_readiness_checklist, ati_readiness_cdl_years, ati_readiness_incidents, ati_readiness_authority_age, ati_readiness_dot_mc_status, ati_readiness_entity, ati_readiness_ein, ati_readiness_truck_ownership, ati_readiness_truck_age, ati_readiness_truck_value, ati_readiness_operation_type, ati_readiness_down_payment, ati_readiness_compliance.
