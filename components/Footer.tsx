@@ -104,6 +104,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/new-authority/readiness" className="text-steel-light hover:text-white transition-colors">
+                  Readiness Checker
+                </Link>
+              </li>
+              <li>
                 <Link href="/truck-insurance-down-payment" className="text-steel-light hover:text-white transition-colors">
                   Down Payments
                 </Link>

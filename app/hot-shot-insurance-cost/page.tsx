@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Hot Shot Insurance Cost | Texas & Florida Coverage',
+  title: 'Hot Shot Insurance Cost',
   description: 'Hot shot trucking insurance cost and coverage for dually trucks and pickup-trailer operations in Texas, Florida, and nationwide.',
   alternates: {
     canonical: 'https://getinsuredtrucking.com/hot-shot-insurance-cost/',
   },
   openGraph: {
-    title: 'Hot Shot Insurance Cost | Texas & Florida Coverage',
+    title: 'Hot Shot Insurance Cost',
     description: 'Hot shot trucking insurance cost and coverage for dually trucks and pickup-trailer operations in Texas, Florida, and nationwide.',
     url: 'https://getinsuredtrucking.com/hot-shot-insurance-cost/',
     siteName: 'Affordable Truck Insurance Inc',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hot Shot Insurance Cost | Texas & Florida Coverage',
+    title: 'Hot Shot Insurance Cost',
     description: 'Hot shot trucking insurance cost and coverage for dually trucks and pickup-trailer operations in Texas, Florida, and nationwide.',
   },
 }
@@ -149,7 +149,7 @@ export default function HotShotInsuranceCost() {
                   <div>
                     <h3 className="font-bold text-navy mb-2">Down Payment Requirements</h3>
                     <p className="text-steel">
-                      Most hot shot insurance policies require a down payment to bind coverage, with the balance paid monthly. Down payment amounts vary by carrier and your risk profile. New authorities and drivers with less experience often face higher down payment requirements, sometimes 15% to 25% or more of the annual premium.
+                      Most hot shot insurance policies require a down payment to bind coverage, with the balance paid monthly. Down payment amounts vary by carrier and your risk profile. New authorities and drivers with less experience often face higher down payment requirements, sometimes 15% to 25% or more of the annual premium. Learn more about <Link href="/truck-insurance-down-payment" className="text-navy hover:underline font-semibold">truck insurance down payments</Link>.
                     </p>
                   </div>
                 </div>
