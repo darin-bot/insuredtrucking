@@ -58,8 +58,11 @@ export default function Home() {
             <p className="text-lg md:text-xl mb-4 text-gray-100">
               Independent insurance agency specializing in for-hire trucking coverage. We work with owner-operators, small fleets (2–10 trucks), and growing authorities.
             </p>
-            <p className="text-base md:text-lg mb-8 text-gray-200">
+            <p className="text-base md:text-lg mb-4 text-gray-200">
               New authority welcome.
+            </p>
+            <p className="text-base md:text-lg mb-8 text-gray-100">
+              Call <a href="tel:270-205-3002" className="text-white hover:underline font-semibold">270-205-3002</a>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/quote" className="btn-primary bg-white text-navy hover:bg-gray-100">
