@@ -17,9 +17,9 @@ describe('SEO Hygiene', () => {
       // Check that sitemap does NOT use www
       expect(sitemapContent).not.toContain('https://www.getinsuredtrucking.com/')
       
-      // Verify all 22 URLs are present with apex domain
+      // Verify all 23 URLs are present with apex domain
       const urlMatches = sitemapContent.match(/<loc>https:\/\/getinsuredtrucking\.com\//g)
-      expect(urlMatches).toHaveLength(22)
+      expect(urlMatches).toHaveLength(23)
     })
     
     test('robots.txt references apex domain sitemap', () => {

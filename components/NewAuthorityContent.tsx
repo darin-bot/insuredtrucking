@@ -111,7 +111,7 @@ export default function NewAuthorityContent() {
                   For-hire trucking companies operating under FMCSA authority must maintain minimum liability coverage of $750,000 for most general freight operations. Some commodity types require higher limits.
                 </p>
                 <p className="text-steel">
-                  You must file proof of insurance with the FMCSA before you can begin operating.
+                  You must file proof of insurance with the FMCSA before you can begin operating. Learn more about <Link href="/new-authority-insurance-cost" className="text-navy hover:underline font-semibold">what affects new authority insurance cost</Link> and why first-year pricing often differs.
                 </p>
               </div>
 
