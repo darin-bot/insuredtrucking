@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Box Truck Insurance Cost | Commercial Cargo Van Coverage',
+  title: 'Box Truck Insurance Cost',
   description: 'Box truck insurance cost and coverage requirements for straight trucks, cargo vans, and delivery operations across nine states.',
   alternates: {
     canonical: 'https://getinsuredtrucking.com/box-truck-insurance-cost/',
   },
   openGraph: {
-    title: 'Box Truck Insurance Cost | Commercial Cargo Van Coverage',
+    title: 'Box Truck Insurance Cost',
     description: 'Box truck insurance cost and coverage requirements for straight trucks, cargo vans, and delivery operations across nine states.',
     url: 'https://getinsuredtrucking.com/box-truck-insurance-cost/',
     siteName: 'Affordable Truck Insurance Inc',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Box Truck Insurance Cost | Commercial Cargo Van Coverage',
+    title: 'Box Truck Insurance Cost',
     description: 'Box truck insurance cost and coverage requirements for straight trucks, cargo vans, and delivery operations across nine states.',
   },
 }
@@ -114,7 +114,7 @@ export default function BoxTruckInsuranceCost() {
                   <div>
                     <h3 className="font-bold text-navy mb-2">New Authority vs. Established Authority</h3>
                     <p className="text-steel">
-                      New authority operations typically pay higher initial premiums because carriers have no track record of your safe operation. Down payments are often larger for new ventures. As you build claims-free operating history, your cost can decrease at renewal.
+                      New authority operations typically pay higher initial premiums because carriers have no track record of your safe operation. Down payments are often larger for new ventures. As you build claims-free operating history, your cost can decrease at renewal. Learn more about <Link href="/new-authority-insurance" className="text-navy hover:underline font-semibold">new authority insurance</Link> or check your <Link href="/new-authority/readiness" className="text-navy hover:underline font-semibold">readiness for new authority</Link>.
                     </p>
                   </div>
 

@@ -142,7 +142,7 @@ export default function OwnerOperatorInsuranceCost() {
                   <div>
                     <h3 className="font-bold text-navy mb-2">New Authority vs. Established Authority</h3>
                     <p className="text-steel">
-                      New authorities typically pay higher initial rates because carriers have no track record of your safe operation under your own authority. As you build a claims-free history, your rates can improve. Even with new authority, your years of commercial driving experience help demonstrate insurability.
+                      New authorities typically pay higher initial rates because carriers have no track record of your safe operation under your own authority. As you build a claims-free history, your rates can improve. Even with new authority, your years of commercial driving experience help demonstrate insurability. Learn more about <Link href="/new-authority-insurance" className="text-navy hover:underline font-semibold">new authority insurance</Link> or check your <Link href="/new-authority/readiness" className="text-navy hover:underline font-semibold">readiness for new authority</Link>.
                     </p>
                   </div>
 
@@ -259,7 +259,7 @@ export default function OwnerOperatorInsuranceCost() {
                   Most trucking insurance policies require a down payment to bind coverage, with the remaining premium spread over monthly payments. The down payment amount varies by carrier and your risk profile.
                 </p>
                 <p className="text-steel mb-4">
-                  New authorities often face higher down payment requirements than established operators. Your down payment typically ranges from 10% to 25% of your annual premium, though some situations require more. Ask about payment plan options when requesting quotes.
+                  New authorities often face higher down payment requirements than established operators. Your down payment typically ranges from 10% to 25% of your annual premium, though some situations require more. Ask about payment plan options when requesting quotes. Read more about <Link href="/truck-insurance-down-payment" className="text-navy hover:underline font-semibold">truck insurance down payments</Link>.
                 </p>
                 <p className="text-steel">
                   Established operators with good payment history may qualify for lower down payments. Some carriers offer more flexible payment terms after you demonstrate reliable payment patterns.
